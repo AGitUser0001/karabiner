@@ -1,0 +1,84 @@
+{:profiles {:⌘ {:default true
+                :sim 50
+                :delay 500
+                :alone 300
+                :held 500}}
+
+ :input-sources {:hex {:input_source_id "(.|^)UnicodeHexInput$"}}
+
+ :tos {:hex {:input :hex}}
+
+ :templates {:notify "/opt/homebrew/bin/terminal-notifier -sender org.pqrs.Karabiner-NotificationWindow -title '%s' -message '%s' -group '%s'"
+             :unnoti "/opt/homebrew/bin/terminal-notifier -remove '%s'"
+             :exec "source ~/.config/karabiner-util.sh\n%s"}
+
+ :modi {:!FTTOOSSCCP [:function  :control        :option       :shift        :command        :caps_lock]
+        :!FTOSCP     [:function  :left_control   :left_option  :left_shift   :left_command   :caps_lock]
+        :!FWERQP     [:function  :right_control  :right_option :right_shift  :right_command  :caps_lock]
+        :##          [:function  :control        :option       :shift        :command        :caps_lock]
+        :!!          [:control   :option         :shift        :command]}
+
+ :main
+ [{:des "Change caps_lock+key_code to ctrl+cmd+key_code"
+   :rules [[:#SPcaps_lock :!Tleft_command nil {:alone [:caps_lock, [:exec "play Tink"]]}]]}
+
+  {:des "Unicode Hex Input"
+   :rules [[:!Ocaps_lock [:hex :left_option] :!hex {:afterup :f17 :alone {:input :hex :halt true}}]
+           [:!Ocaps_lock nil :hex {:afterup :f17}]]}
+
+  {:des "Keymap for ctrl+cmd"
+   :rules [[:!TC#Pleft_command :!TCv]                                   ;; clipboard
+           [:!TC#Ptab {:ckey :dictation}]                               ;; dictation
+           [:!TC#Pd :!TCw] [:!TCq :!TCd] [:!TCw :f19]                   ;; key-to-key
+           [:!TC#Pt [:exec "app Terminal"]]                             ;; terminal
+           [:!TC#Pf {:modi [:fn] :key f :repeat false}]                 ;; fullscreen
+           [:!TC#Pz nil nil {:afterup "pmset sleepnow"}]                ;; sleep now
+           [:!TC#Pescape [:exec "app 'Activity Monitor'"]] [:!TCc :!Fc] ;; activity monitor/control center
+           [:!TC#Pa :!Cspacebar] [:!TCx :!Cq] [:!TSC#Px :!OSCescape]    ;; spotlight/quit/force quit
+           [:!TC#Pg :mission_control] [:!TC#Pb :!Tmission_control]      ;; expose/app
+           [:!TC#Ps nil nil {:afterup [:exec "app ScreenSaverEngine"]}] ;; screensaver
+
+           [:!TC#Pleft_control "~/Library/Custom/Executables/lockscreen"] ;; lock
+
+           [:!TC#Pspacebar "~/Library/Custom/Executables/emoji"] ;; emoji
+           [:!TC#Pe "~/Library/Custom/Executables/emoji"]
+
+           [:!TC#Pf1 :illumination_decrement]  [:!TC#Pf2 :illumination_increment]       ;; keyboard illumination
+           [:!TC#SPf3 :f14] [:!TC#Pf11 :!TCkeypad_hyphen] [:!TC#Pf12 :!TCkeypad_plus]
+
+           [:!TC#Pequal_sign [:exec "ignoreEvents=$(defaults read org.p0deje.Maccy ignoreEvents)
+                                     defaults write org.p0deje.Maccy ignoreEvents true
+                                     menu 'menu item \"Copy\" of menu 1 of menu bar item \"Edit\"'
+                                     defaults write org.p0deje.Maccy ignoreEvents $ignoreEvents
+                                     read -d '' output <<< \"$(pbpaste | tr -d '[:space:]' | bc -l 2>&1)\"
+                                     printf %s \"${output//$'\\n'}\" | pbcopy
+                                     menu 'menu item \"Paste\" of menu 1 of menu bar item \"Edit\"'"]]]}
+
+  {:des "Mouse keys"
+   :rules
+   [;; 6 7 8 9 0 - + ⌫
+    ;; y u i o p [ ] \
+    ;; h j k l ; ' ╶─⏎
+    ;; n m , . / ╶───⇧
+    ;;───┘ ⌘─╴ ⌥ ← ↕︎ →
+    [:!TSC#P7 {:mkey {:x -1000 :y -1000}}] [:!TSC#P8 {:mkey {:y -1414}}] [:!TSC#P9 {:mkey {:x 1000 :y -1000}}]
+    [:!TSC#Pu {:mkey {:x -1414}}] [:!TSC#Pi {:pkey :button1}] [:!TSC#Po {:mkey {:x 1414}}]
+    [:!TSC#Pj {:mkey {:x -1000 :y 1000}}] [:!TSC#Pk {:mkey {:y 1414}}] [:!TSC#Pl {:mkey {:x 1000 :y 1000}}]
+    [:!TSC#Pcomma {:pkey :button2}] [:!TSC#Pperiod {:pkey :button3}]
+
+    [:!TSC#EQPleft_arrow {:mkey {:hwheel 32}}] [:!TSC#EQPright_arrow {:mkey {:hwheel -32}}]
+    [:!TSC#EQPup_arrow {:mkey {:vwheel -32}}] [:!TSC#EQPdown_arrow {:mkey {:vwheel 32}}]
+
+    [:!TSC#Ph {:mkey {:speed 0.5}}] [:!TSC#Py {:mkey {:speed 0.25}}] [:!TSC#P0 {:mkey {:speed 0.02}}]
+    [:!TSC#Pn {:mkey {:speed 4}}] [:!TSC#Pm {:mkey {:speed 2}}]
+
+    [:!TSC#Pright_command {:mkey {:speed 4}}] [:!TSC#Pright_option {:mkey {:speed 2}}]
+    [:!TSC#Pslash {:mkey {:speed 0.5}}]]}
+
+  {:des "Modifications"
+   :rules
+   [[:!Ccaps_lock :!TCv]
+    [:!T#Pcaps_lock "~/Library/Custom/Executables/lockscreen"]
+    [:!F##delete_or_backspace :delete_forward]
+
+    [:##caps_lock [:caps_lock, [:exec "play Tink"]]]]}]}
