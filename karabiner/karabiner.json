@@ -391,7 +391,7 @@
             }
           },
           "to" : [ {
-            "shell_command" : "source ~/.config/karabiner-util.sh\nignoreEvents=$(defaults read org.p0deje.Maccy ignoreEvents)\n                                     defaults write org.p0deje.Maccy ignoreEvents true\n                                     menu 'menu item \"Copy\" of menu 1 of menu bar item \"Edit\"'\n                                     defaults write org.p0deje.Maccy ignoreEvents $ignoreEvents\n                                     read -d '' output <<< \"$(pbpaste | tr -d '[:space:]' | bc -l 2>&1)\"\n                                     printf %s \"${output//$'\\n'}\" | pbcopy\n                                     menu 'menu item \"Paste\" of menu 1 of menu bar item \"Edit\"'"
+            "shell_command" : "source ~/.config/karabiner-util.sh\nignoreEvents=$(defaults read org.p0deje.Maccy ignoreEvents)\n                                     defaults write org.p0deje.Maccy ignoreEvents true\n                                     menu 'menu item \"Copy\" of menu 1 of menu bar item \"Edit\"'\n                                     defaults write org.p0deje.Maccy ignoreEvents $ignoreEvents\n                                     read -d '' output <<< \"$(pbpaste | tr -d '[:space:]' | bc -l 2>&1)\"\n                                     printf %s \"$output\" | pbcopy\n                                     menu 'menu item \"Paste\" of menu 1 of menu bar item \"Edit\"'"
           } ],
           "type" : "basic"
         } ]

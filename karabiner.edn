@@ -51,7 +51,7 @@
                                      menu 'menu item \"Copy\" of menu 1 of menu bar item \"Edit\"'
                                      defaults write org.p0deje.Maccy ignoreEvents $ignoreEvents
                                      read -d '' output <<< \"$(pbpaste | tr -d '[:space:]' | bc -l 2>&1)\"
-                                     printf %s \"${output//$'\\n'}\" | pbcopy
+                                     printf %s \"$output\" | pbcopy
                                      menu 'menu item \"Paste\" of menu 1 of menu bar item \"Edit\"'"]]]}
 
   {:des "Mouse keys"
