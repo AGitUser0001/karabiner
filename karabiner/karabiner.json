@@ -168,7 +168,7 @@
             }
           },
           "to" : [ {
-            "modifiers" : [ "fn" ],
+            "modifiers" : [ "control", "command" ],
             "key_code" : "f",
             "repeat" : false
           } ],

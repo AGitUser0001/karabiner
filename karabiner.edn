@@ -31,7 +31,7 @@
            [:!TC#Ptab {:ckey :dictation}]                               ;; dictation
            [:!TC#Pd :!TCw] [:!TCq :!TCd] [:!TCw :f19]                   ;; key-to-key
            [:!TC#Pt [:exec "app Terminal"]]                             ;; terminal
-           [:!TC#Pf {:modi [:fn] :key f :repeat false}]                 ;; fullscreen
+           [:!TC#Pf {:modi [:control :command] :key f :repeat false}]   ;; fullscreen
            [:!TC#Pz nil nil {:afterup "pmset sleepnow"}]                ;; sleep now
            [:!TC#Pescape [:exec "app 'Activity Monitor'"]] [:!TCc :!Fc] ;; activity monitor/control center
            [:!TC#Pa :!Cspacebar] [:!TCx :!Cq] [:!TSC#Px :!OSCescape]    ;; spotlight/quit/force quit
