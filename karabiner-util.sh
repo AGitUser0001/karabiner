@@ -7,7 +7,19 @@ else
 fi
 
 menu() {
-  script 'tell application "System Events" to tell (first process where it is frontmost) to click '"$1"' of menu bar 1'
+  case $# in
+    1) script 'tell application "System Events" to tell (first process where it is frontmost) to click '"$1"' of menu bar 1';;
+    2) script 'tell application "System Events" to tell (first process where it is frontmost) to click '"$1"' of menu bar '"$2";;
+    3) script 'tell application "System Events" to tell '"$1"' to click '"$2"' of menu bar '"$3";;
+  esac
+}
+
+notify() {
+  case $# in
+    1) $HOMEBREW_PREFIX/bin/terminal-notifier -remove "$1";;
+    2|3) $HOMEBREW_PREFIX/bin/terminal-notifier -sender org.pqrs.Karabiner-NotificationWindow -title Karabiner-Elements -message "$2" -group "$3";;
+    4) $HOMEBREW_PREFIX/bin/terminal-notifier -sender org.pqrs.Karabiner-NotificationWindow -title "$2" -message "$3" -group "$4";;
+  esac
 }
 
 script() {
@@ -20,14 +32,4 @@ app() {
 
 play() {
   afplay /System/Library/Sounds/$1.aiff
-}
-
-notify() {
-  if (( $# == 1 )); then
-    $HOMEBREW_PREFIX/bin/terminal-notifier -remove "$1"
-  elif (( $# == 2 || $# == 3 )); then
-    $HOMEBREW_PREFIX/bin/terminal-notifier -sender org.pqrs.Karabiner-NotificationWindow -title Karabiner-Elements -message "$2" -group "$3"
-  elif (( $# == 4 )); then
-    $HOMEBREW_PREFIX/bin/terminal-notifier -sender org.pqrs.Karabiner-NotificationWindow -title "$2" -message "$3" -group "$4"
-  fi
 }
