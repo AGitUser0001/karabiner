@@ -32,7 +32,7 @@
            [:#Pn :!TSCkeypad_8 ["map" 1]] [:#Pr :!TCr ["map" 1]]
            [:#SPdelete_or_backspace :f15 ["map" 1]]
            [:#SPreturn_or_enter :f16 ["map" 1]]
-           [:#SPbackslash :f17]
+           [:#SPbackslash :f17 ["map" 1]]
 
            [:#Preturn :!TSCkeypad_7 ["map" 1]]
            [:#Pt [:exec "app Terminal"] ["map" 1]]                             ;; terminal
@@ -40,7 +40,6 @@
            [:#Pz nil ["map" 1] {:afterup "pmset sleepnow"}]                ;; sleep now
            [:#Pescape [:exec "app 'Activity Monitor'"] ["map" 1]] [:#Pc :!Fc ["map" 1]] ;; activity monitor/control center
            [:#Pa :!Cspacebar ["map" 1]] [:#Px :!Cq ["map" 1]] [:!S#Px :!OSCescape ["map" 1]]    ;; spotlight/quit/force quit
-           [:#Pg :mission_control ["map" 1]] [:#Pb :!Tmission_control ["map" 1]]      ;; expose/app
            [:#Ps nil ["map" 1] {:afterup [:exec "app ScreenSaverEngine"]}] ;; screensaver
 
            [:#Pleft_control "~/Library/Custom/Executables/lockscreen" ["map" 1]] ;; lock
@@ -61,6 +60,11 @@
            [:#Ph :!TC1          ["map" 1]] [:#Pj :!TCkeypad_7 ["map" 1]] [:#Pk :!TCkeypad_8 ["map" 1]] [:#Pl :!TCkeypad_9 ["map" 1]]
            [:#Pm :!TCkeypad_0   ["map" 1]] [:#Pcomma :!TC7    ["map" 1]] [:#Pperiod :!TC5   ["map" 1]]
            [:#Psemicolon :!TC2  ["map" 1]] [:#Pquote :!TC4    ["map" 1]] [:#Pslash :!TC3    ["map" 1]]
+
+           [:#Pup_arrow   :mission_control    ["map" 1]] [:#Pleft_arrow   :!TCleft_arrow  ["map" 1]]
+           [:#Pdown_arrow :!Tmission_control  ["map" 1]] [:#Pright_arrow  :!TCright_arrow ["map" 1]]
+           [:#Popen_bracket [:exec "menu 'menu item \"Tile Window to Left of Screen\" of menu 1 of menu bar item \"Window\"'"] ["map" 1]]
+           [:#Pclose_bracket [:exec "menu 'menu item \"Tile Window to Right of Screen\" of menu 1 of menu bar item \"Window\"'"] ["map" 1]]
 
            [:#Pequal_sign [:exec "ignoreEvents=$(defaults read org.p0deje.Maccy ignoreEvents)
                                   defaults write org.p0deje.Maccy ignoreEvents true
@@ -99,6 +103,6 @@
 
     [:left_shift :left_shift ["map" 1]]
     [:right_shift :right_shift ["map" 1]]
-    [{:any :key_code} :vk_none ["map" 1]]
+    [{:modi [:any] :any :key_code} :vk_none ["map" 1]]
     [:##caps_lock [:caps_lock, [:exec "play Tink"]]]]}]}
 
