@@ -38,8 +38,10 @@
 
            [:#Preturn :!TSCkeypad_7 ["map" 1]]
            [:#Pt [:exec "app Terminal"] ["map" 1]]                             ;; terminal
-           [:#Pf {:modi [:control :command] :key f :repeat false} ["map" 1]]   ;; fullscreen
-           [:#Pz nil ["map" 1] {:afterup "pmset sleepnow"}]                ;; sleep now
+           [:#Pf {:modi [:control :command] :key :f :repeat false} ["map" 1]]   ;; fullscreen
+           {:type :basic :from {:key_code :z :modifiers {:optional [:caps_lock]}} :to_after_key_up
+            [{:set_variable {:name :map :value 0}}
+             {:software_function {:iokit_power_management_sleep_system {:delay_milliseconds 0}}}]} ;; sleep now
            [:#Pescape [:exec "app 'Activity Monitor'"] ["map" 1]] [:#Pc :!Fc ["map" 1]] ;; activity monitor/control center
            [:#Pa :!Cspacebar ["map" 1]] [:#Px :!Cq ["map" 1]] [:!S#Px :!OSCescape ["map" 1]] ;; spotlight/quit/force quit
            [:#Ps nil ["map" 1] {:afterup [:exec "app ScreenSaverEngine"]}] ;; screensaver

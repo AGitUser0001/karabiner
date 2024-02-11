@@ -362,21 +362,25 @@
           } ],
           "type" : "basic"
         }, {
-          "to_after_key_up" : [ {
-            "shell_command" : "pmset sleepnow"
-          } ],
+          "type" : "basic",
           "from" : {
             "key_code" : "z",
             "modifiers" : {
               "optional" : [ "caps_lock" ]
             }
           },
-          "conditions" : [ {
-            "name" : "map",
-            "value" : 1,
-            "type" : "variable_if"
-          } ],
-          "type" : "basic"
+          "to_after_key_up" : [ {
+            "set_variable" : {
+              "name" : "map",
+              "value" : 0
+            }
+          }, {
+            "software_function" : {
+              "iokit_power_management_sleep_system" : {
+                "delay_milliseconds" : 0
+              }
+            }
+          } ]
         }, {
           "from" : {
             "key_code" : "escape",
