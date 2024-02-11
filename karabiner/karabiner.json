@@ -380,6 +380,11 @@
                 "delay_milliseconds" : 0
               }
             }
+          } ],
+          "conditions" : [ {
+            "type" : "variable_if",
+            "name" : "map",
+            "value" : 1
           } ]
         }, {
           "from" : {
