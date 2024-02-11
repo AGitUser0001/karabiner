@@ -8,9 +8,7 @@
 
  :tos {:hex {:input :hex}}
 
- :templates {:notify "/opt/homebrew/bin/terminal-notifier -sender org.pqrs.Karabiner-NotificationWindow -title '%s' -message '%s' -group '%s'"
-             :unnoti "/opt/homebrew/bin/terminal-notifier -remove '%s'"
-             :exec "source ~/.config/karabiner-util.sh\n%s"}
+ :templates {:exec "source ~/.config/karabiner-util.sh\n%s"}
 
  :modi {:!FTTOOSSCCP [:function  :control        :option       :shift        :command        :caps_lock]
         :!FTOSCP     [:function  :left_control   :left_option  :left_shift   :left_command   :caps_lock]
@@ -19,40 +17,58 @@
         :!!          [:control   :option         :shift        :command]}
 
  :main
- [{:des "Change caps_lock+key_code to ctrl+cmd+key_code"
-   :rules [[:#SPcaps_lock :!Tleft_command nil {:alone [:caps_lock, [:exec "play Tink"]]}]]}
+ [{:des "Change caps_lock to 'map' layer, if alone caps_lock and sound"
+   :rules [[:#SPcaps_lock ["map" 1] nil {:afterup ["map" 0]
+                                         :alone [:caps_lock, [:exec "play Tink"]]}]]}
 
   {:des "Unicode Hex Input"
-   :rules [[:!Ocaps_lock [:hex :left_option] :!hex {:afterup :f17 :alone {:input :hex :halt true}}]
-           [:!Ocaps_lock nil :hex {:afterup :f17}]]}
+   :rules [[:!O#Pcaps_lock [:hex :left_option] :!hex {:afterup :f18 :alone {:input :hex :halt true}}]
+           [:!O#Pcaps_lock nil :hex {:afterup :f18}]]}
 
   {:des "Keymap for ctrl+cmd"
-   :rules [[:!TC#Pleft_command :!TCv]                                   ;; clipboard
-           [:!TC#Ptab {:ckey :dictation}]                               ;; dictation
-           [:!TC#Pd :!TCw] [:!TCq :!TCd] [:!TCw :f19]                   ;; key-to-key
-           [:!TC#Pt [:exec "app Terminal"]]                             ;; terminal
-           [:!TC#Pf {:modi [:control :command] :key f :repeat false}]   ;; fullscreen
-           [:!TC#Pz nil nil {:afterup "pmset sleepnow"}]                ;; sleep now
-           [:!TC#Pescape [:exec "app 'Activity Monitor'"]] [:!TCc :!Fc] ;; activity monitor/control center
-           [:!TC#Pa :!Cspacebar] [:!TCx :!Cq] [:!TSC#Px :!OSCescape]    ;; spotlight/quit/force quit
-           [:!TC#Pg :mission_control] [:!TC#Pb :!Tmission_control]      ;; expose/app
-           [:!TC#Ps nil nil {:afterup [:exec "app ScreenSaverEngine"]}] ;; screensaver
+   :rules [[:#Pleft_command :!TCv ["map" 1]]                                   ;; clipboard
+           [:#Ptab {:ckey :dictation} ["map" 1]]                               ;; dictation
+           [:#Pw :!TSCkeypad_6 ["map" 1]] [:#Pq :!TSCkeypad_7 ["map" 1]] [:#Pd :f19 ["map" 1]]
+           [:#Pn :!TSCkeypad_8 ["map" 1]] [:#Pr :!TCr ["map" 1]]
+           [:#SPdelete_or_backspace :f15 ["map" 1]]
+           [:#SPreturn_or_enter :f16 ["map" 1]]
+           [:#SPbackslash :f17]
 
-           [:!TC#Pleft_control "~/Library/Custom/Executables/lockscreen"] ;; lock
+           [:#Preturn :!TSCkeypad_7 ["map" 1]]
+           [:#Pt [:exec "app Terminal"] ["map" 1]]                             ;; terminal
+           [:#Pf {:modi [:control :command] :key f :repeat false} ["map" 1]]   ;; fullscreen
+           [:#Pz nil ["map" 1] {:afterup "pmset sleepnow"}]                ;; sleep now
+           [:#Pescape [:exec "app 'Activity Monitor'"] ["map" 1]] [:#Pc :!Fc ["map" 1]] ;; activity monitor/control center
+           [:#Pa :!Cspacebar ["map" 1]] [:#Px :!Cq ["map" 1]] [:!S#Px :!OSCescape ["map" 1]]    ;; spotlight/quit/force quit
+           [:#Pg :mission_control ["map" 1]] [:#Pb :!Tmission_control ["map" 1]]      ;; expose/app
+           [:#Ps nil ["map" 1] {:afterup [:exec "app ScreenSaverEngine"]}] ;; screensaver
 
-           [:!TC#Pspacebar "~/Library/Custom/Executables/emoji"] ;; emoji
-           [:!TC#Pe "~/Library/Custom/Executables/emoji"]
+           [:#Pleft_control "~/Library/Custom/Executables/lockscreen" ["map" 1]] ;; lock
 
-           [:!TC#Pf1 :illumination_decrement]  [:!TC#Pf2 :illumination_increment]       ;; keyboard illumination
-           [:!TC#SPf3 :f14] [:!TC#Pf11 :!TCkeypad_hyphen] [:!TC#Pf12 :!TCkeypad_plus]
+           [:#Pspacebar "~/Library/Custom/Executables/emoji" ["map" 1]] ;; emoji
+           [:#Pe "~/Library/Custom/Executables/emoji" ["map" 1]]
 
-           [:!TC#Pequal_sign [:exec "ignoreEvents=$(defaults read org.p0deje.Maccy ignoreEvents)
-                                     defaults write org.p0deje.Maccy ignoreEvents true
-                                     menu 'menu item \"Copy\" of menu 1 of menu bar item \"Edit\"'
-                                     defaults write org.p0deje.Maccy ignoreEvents $ignoreEvents
-                                     read -d '' output <<< \"$(pbpaste | tr -d '[:space:]' | bc -l 2>&1)\"
-                                     printf %s \"$output\" | pbcopy
-                                     menu 'menu item \"Paste\" of menu 1 of menu bar item \"Edit\"'"]]]}
+           [:#Pf1 :illumination_decrement ["map" 1]]  [:#Pf2 :illumination_increment ["map" 1]]       ;; keyboard illumination
+           [:#SPf3 :f14 ["map" 1]]
+
+           [:#Pgrave_accent_and_tilde :!TSCkeypad_0 ["map" 1]]
+           [:#P1 :!TSCkeypad_1 ["map" 1]] [:#P2 :!TSCkeypad_2 ["map" 1]] [:#P3 :!TSCkeypad_3 ["map" 1]]
+           [:#P4 :!TSCkeypad_4 ["map" 1]] [:#P5 :!TSCkeypad_5 ["map" 1]]
+
+           [:#Pf11 :!TCkeypad_hyphen ["map" 1]] [:#Pf12 :!TCkeypad_plus ["map" 1]]
+           [:#P6 :!TC6          ["map" 1]] [:#P7 :!TCkeypad_1 ["map" 1]] [:#P8 :!TCkeypad_2 ["map" 1]] [:#P9 :!TCkeypad_3 ["map" 1]]
+           [:#Py :!TC0          ["map" 1]] [:#Pu :!TCkeypad_4 ["map" 1]] [:#Pi :!TCkeypad_5 ["map" 1]] [:#Po :!TCkeypad_6 ["map" 1]]
+           [:#Ph :!TC1          ["map" 1]] [:#Pj :!TCkeypad_7 ["map" 1]] [:#Pk :!TCkeypad_8 ["map" 1]] [:#Pl :!TCkeypad_9 ["map" 1]]
+           [:#Pm :!TCkeypad_0   ["map" 1]] [:#Pcomma :!TC7    ["map" 1]] [:#Pperiod :!TC5   ["map" 1]]
+           [:#Psemicolon :!TC2  ["map" 1]] [:#Pquote :!TC4    ["map" 1]] [:#Pslash :!TC3    ["map" 1]]
+
+           [:#Pequal_sign [:exec "ignoreEvents=$(defaults read org.p0deje.Maccy ignoreEvents)
+                                  defaults write org.p0deje.Maccy ignoreEvents true
+                                  menu 'menu item \"Copy\" of menu 1 of menu bar item \"Edit\"'
+                                  defaults write org.p0deje.Maccy ignoreEvents $ignoreEvents
+                                  read -d '' output <<< \"$(pbpaste | tr -d '[:space:]' | bc -l 2>&1)\"
+                                  printf %s \"$output\" | pbcopy
+                                  menu 'menu item \"Paste\" of menu 1 of menu bar item \"Edit\"'"] ["map" 1]]]}
 
   {:des "Mouse keys"
    :rules
@@ -61,19 +77,19 @@
     ;; h j k l ; ' ╶─⏎
     ;; n m , . / ╶───⇧
     ;;───┘ ⌘─╴ ⌥ ← ↕︎ →
-    [:!TSC#P7 {:mkey {:x -1000 :y -1000}}] [:!TSC#P8 {:mkey {:y -1414}}] [:!TSC#P9 {:mkey {:x 1000 :y -1000}}]
-    [:!TSC#Pu {:mkey {:x -1414}}] [:!TSC#Pi {:pkey :button1}] [:!TSC#Po {:mkey {:x 1414}}]
-    [:!TSC#Pj {:mkey {:x -1000 :y 1000}}] [:!TSC#Pk {:mkey {:y 1414}}] [:!TSC#Pl {:mkey {:x 1000 :y 1000}}]
-    [:!TSC#Pcomma {:pkey :button2}] [:!TSC#Pperiod {:pkey :button3}]
+    [:!S#P7 {:mkey {:x -1000 :y -1000}} ["map" 1]] [:!S#P8 {:mkey {:y -1414}} ["map" 1]] [:!S#P9 {:mkey {:x 1000 :y -1000}} ["map" 1]]
+    [:!S#Pu {:mkey {:x -1414}}          ["map" 1]] [:!S#Pi {:pkey :button1}   ["map" 1]] [:!S#Po {:mkey {:x 1414}}          ["map" 1]]
+    [:!S#Pj {:mkey {:x -1000 :y 1000}}  ["map" 1]] [:!S#Pk {:mkey {:y 1414}}  ["map" 1]] [:!S#Pl {:mkey {:x 1000 :y 1000}}  ["map" 1]]
+    [:!S#Pcomma {:pkey :button2} ["map" 1]] [:!S#Pperiod {:pkey :button3} ["map" 1]]
 
-    [:!TSC#EQPleft_arrow {:mkey {:hwheel 32}}] [:!TSC#EQPright_arrow {:mkey {:hwheel -32}}]
-    [:!TSC#EQPup_arrow {:mkey {:vwheel -32}}] [:!TSC#EQPdown_arrow {:mkey {:vwheel 32}}]
+    [:!S#EQPleft_arrow {:mkey {:hwheel 32}}               ["map" 1]] [:!S#EQPright_arrow {:mkey {:hwheel -32}}              ["map" 1]]
+    [:!S#EQPup_arrow {:mkey {:vwheel -32}}                ["map" 1]] [:!S#EQPdown_arrow {:mkey {:vwheel 32}}                ["map" 1]]
 
-    [:!TSC#Ph {:mkey {:speed 0.5}}] [:!TSC#Py {:mkey {:speed 0.25}}] [:!TSC#P0 {:mkey {:speed 0.02}}]
-    [:!TSC#Pn {:mkey {:speed 4}}] [:!TSC#Pm {:mkey {:speed 2}}]
+    [:!S#Ph {:mkey {:speed 0.5}}        ["map" 1]] [:!S#Py {:mkey {:speed 0.25}} ["map" 1]] [:!S#P0 {:mkey {:speed 0.02}}   ["map" 1]]
+    [:!S#Pn {:mkey {:speed 4}}          ["map" 1]] [:!S#Pm {:mkey {:speed 2}} ["map" 1]]
 
-    [:!TSC#Pright_command {:mkey {:speed 4}}] [:!TSC#Pright_option {:mkey {:speed 2}}]
-    [:!TSC#Pslash {:mkey {:speed 0.5}}]]}
+    [:!S#Pright_command {:mkey {:speed 4}}                ["map" 1]] [:!S#Pright_option {:mkey {:speed 2}}                  ["map" 1]]
+    [:!S#Pslash {:mkey {:speed 0.5}}                      ["map" 1]]]}
 
   {:des "Modifications"
    :rules
@@ -81,4 +97,8 @@
     [:!T#Pcaps_lock "~/Library/Custom/Executables/lockscreen"]
     [:!F##delete_or_backspace :delete_forward]
 
+    [:left_shift :left_shift ["map" 1]]
+    [:right_shift :right_shift ["map" 1]]
+    [{:any :key_code} :vk_none ["map" 1]]
     [:##caps_lock [:caps_lock, [:exec "play Tink"]]]]}]}
+
