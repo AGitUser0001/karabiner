@@ -1125,7 +1125,7 @@
             }
           },
           "to" : [ {
-            "shell_command" : "source ~/.config/karabiner-util.sh\nmenu 'menu item \"Move Window to Right SIde of Screen\" of menu 1 of menu bar item \"Window\"'"
+            "shell_command" : "source ~/.config/karabiner-util.sh\nmenu 'menu item \"Move Window to Right Side of Screen\" of menu 1 of menu bar item \"Window\"'"
           } ],
           "conditions" : [ {
             "name" : "map",
