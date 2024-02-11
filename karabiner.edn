@@ -26,13 +26,14 @@
            [:!O#Pcaps_lock nil :hex {:afterup :f18}]]}
 
   {:des "Keymap for ctrl+cmd"
-   :rules [[:#Pleft_command :!TCv ["map" 1]]                                   ;; clipboard
+   :rules [[:#Pleft_command :f13      ["map" 1]]                                   ;; clipboard
            [:#Ptab {:ckey :dictation} ["map" 1]]                               ;; dictation
-           [:#Pw :!TSCkeypad_6 ["map" 1]] [:#Pq :!TSCkeypad_7 ["map" 1]] [:#Pd :f19 ["map" 1]]
-           [:#Pn :!TSCkeypad_8 ["map" 1]] [:#Pr :!TCr ["map" 1]]
+           [:#Pw :!TSCkeypad_6        ["map" 1]] [:#Pq :!TSCkeypad_7  ["map" 1]] [:#Pd :f19 ["map" 1]]
+           [:#Pn :!TSCkeypad_8        ["map" 1]] [:#Pr :!TCr          ["map" 1]]
+
            [:#SPdelete_or_backspace :f15 ["map" 1]]
-           [:#SPreturn_or_enter :f16 ["map" 1]]
-           [:#SPbackslash :f17 ["map" 1]]
+           [:#SPreturn_or_enter :f16  ["map" 1]]
+           [:#SPbackslash :f17        ["map" 1]]
 
            [:#Preturn :!TSCkeypad_7 ["map" 1]]
            [:#Pt [:exec "app Terminal"] ["map" 1]]                             ;; terminal
@@ -61,8 +62,8 @@
            [:#Pm :!TCkeypad_0   ["map" 1]] [:#Pcomma :!TC7    ["map" 1]] [:#Pperiod :!TC5   ["map" 1]]
            [:#Psemicolon :!TC2  ["map" 1]] [:#Pquote :!TC4    ["map" 1]] [:#Pslash :!TC3    ["map" 1]]
 
-           [:#Pup_arrow   :mission_control    ["map" 1]] [:#Pleft_arrow   :!TCleft_arrow  ["map" 1]]
-           [:#Pdown_arrow :!Tmission_control  ["map" 1]] [:#Pright_arrow  :!TCright_arrow ["map" 1]]
+           [:#Pup_arrow   :mission_control    ["map" 1]] [:#Pleft_arrow   :!TC8  ["map" 1]]
+           [:#Pdown_arrow :!Tmission_control  ["map" 1]] [:#Pright_arrow  :!TC9 ["map" 1]]
            [:#Popen_bracket [:exec "menu 'menu item \"Tile Window to Left of Screen\" of menu 1 of menu bar item \"Window\"'"] ["map" 1]]
            [:#Pclose_bracket [:exec "menu 'menu item \"Tile Window to Right of Screen\" of menu 1 of menu bar item \"Window\"'"] ["map" 1]]
 
@@ -97,7 +98,7 @@
 
   {:des "Modifications"
    :rules
-   [[:!Ccaps_lock :!TCv]
+   [[:!Ccaps_lock :f13]
     [:!T#Pcaps_lock "~/Library/Custom/Executables/lockscreen"]
     [:!F##delete_or_backspace :delete_forward]
 
