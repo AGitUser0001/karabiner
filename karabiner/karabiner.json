@@ -1154,6 +1154,36 @@
         "description" : "Mouse keys",
         "manipulators" : [ {
           "from" : {
+            "key_code" : "equal_sign",
+            "modifiers" : {
+              "mandatory" : [ "left_shift" ],
+              "optional" : [ "caps_lock" ]
+            }
+          },
+          "to" : [ {
+            "modifiers" : [ "control", "command" ],
+            "mouse_key" : {
+              "vertical_wheel" : 64
+            }
+          } ],
+          "type" : "basic"
+        }, {
+          "from" : {
+            "key_code" : "hyphen",
+            "modifiers" : {
+              "mandatory" : [ "left_shift" ],
+              "optional" : [ "caps_lock" ]
+            }
+          },
+          "to" : [ {
+            "modifiers" : [ "control", "command" ],
+            "mouse_key" : {
+              "vertical_wheel" : -64
+            }
+          } ],
+          "type" : "basic"
+        }, {
+          "from" : {
             "key_code" : "7",
             "modifiers" : {
               "mandatory" : [ "left_shift" ],
