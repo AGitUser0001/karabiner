@@ -262,6 +262,56 @@
           "type" : "basic"
         }, {
           "from" : {
+            "key_code" : "f5",
+            "modifiers" : {
+              "optional" : [ "caps_lock" ]
+            }
+          },
+          "to" : [ {
+            "key_code" : "f15",
+            "modifiers" : [ "left_option" ]
+          } ],
+          "conditions" : [ {
+            "name" : "map",
+            "value" : 1,
+            "type" : "variable_if"
+          } ],
+          "type" : "basic"
+        }, {
+          "from" : {
+            "key_code" : "v",
+            "modifiers" : {
+              "optional" : [ "caps_lock" ]
+            }
+          },
+          "to" : [ {
+            "key_code" : "f15",
+            "modifiers" : [ "left_option" ]
+          } ],
+          "conditions" : [ {
+            "name" : "map",
+            "value" : 1,
+            "type" : "variable_if"
+          } ],
+          "type" : "basic"
+        }, {
+          "from" : {
+            "key_code" : "f3",
+            "modifiers" : {
+              "optional" : [ "left_shift", "caps_lock" ]
+            }
+          },
+          "to" : [ {
+            "key_code" : "f14"
+          } ],
+          "conditions" : [ {
+            "name" : "map",
+            "value" : 1,
+            "type" : "variable_if"
+          } ],
+          "type" : "basic"
+        }, {
+          "from" : {
             "key_code" : "return",
             "modifiers" : {
               "optional" : [ "caps_lock" ]
@@ -501,22 +551,6 @@
           },
           "to" : [ {
             "key_code" : "illumination_increment"
-          } ],
-          "conditions" : [ {
-            "name" : "map",
-            "value" : 1,
-            "type" : "variable_if"
-          } ],
-          "type" : "basic"
-        }, {
-          "from" : {
-            "key_code" : "f3",
-            "modifiers" : {
-              "optional" : [ "left_shift", "caps_lock" ]
-            }
-          },
-          "to" : [ {
-            "key_code" : "f14"
           } ],
           "conditions" : [ {
             "name" : "map",
@@ -1067,6 +1101,40 @@
           "type" : "basic"
         }, {
           "from" : {
+            "key_code" : "open_bracket",
+            "modifiers" : {
+              "mandatory" : [ "left_shift" ],
+              "optional" : [ "caps_lock" ]
+            }
+          },
+          "to" : [ {
+            "shell_command" : "source ~/.config/karabiner-util.sh\nmenu 'menu item \"Move Window to Left Side of Screen\" of menu 1 of menu bar item \"Window\"'"
+          } ],
+          "conditions" : [ {
+            "name" : "map",
+            "value" : 1,
+            "type" : "variable_if"
+          } ],
+          "type" : "basic"
+        }, {
+          "from" : {
+            "key_code" : "close_bracket",
+            "modifiers" : {
+              "mandatory" : [ "left_shift" ],
+              "optional" : [ "caps_lock" ]
+            }
+          },
+          "to" : [ {
+            "shell_command" : "source ~/.config/karabiner-util.sh\nmenu 'menu item \"Move Window to Right SIde of Screen\" of menu 1 of menu bar item \"Window\"'"
+          } ],
+          "conditions" : [ {
+            "name" : "map",
+            "value" : 1,
+            "type" : "variable_if"
+          } ],
+          "type" : "basic"
+        }, {
+          "from" : {
             "key_code" : "equal_sign",
             "modifiers" : {
               "optional" : [ "caps_lock" ]
@@ -1296,7 +1364,7 @@
             "key_code" : "left_arrow",
             "modifiers" : {
               "mandatory" : [ "left_shift" ],
-              "optional" : [ "right_command", "right_option", "caps_lock" ]
+              "optional" : [ "caps_lock" ]
             }
           },
           "to" : [ {
@@ -1315,7 +1383,7 @@
             "key_code" : "right_arrow",
             "modifiers" : {
               "mandatory" : [ "left_shift" ],
-              "optional" : [ "right_command", "right_option", "caps_lock" ]
+              "optional" : [ "caps_lock" ]
             }
           },
           "to" : [ {
@@ -1334,7 +1402,7 @@
             "key_code" : "up_arrow",
             "modifiers" : {
               "mandatory" : [ "left_shift" ],
-              "optional" : [ "right_command", "right_option", "caps_lock" ]
+              "optional" : [ "caps_lock" ]
             }
           },
           "to" : [ {
@@ -1353,7 +1421,7 @@
             "key_code" : "down_arrow",
             "modifiers" : {
               "mandatory" : [ "left_shift" ],
-              "optional" : [ "right_command", "right_option", "caps_lock" ]
+              "optional" : [ "caps_lock" ]
             }
           },
           "to" : [ {
@@ -1526,7 +1594,8 @@
           "from" : {
             "key_code" : "caps_lock",
             "modifiers" : {
-              "mandatory" : [ "left_command" ]
+              "mandatory" : [ "left_command" ],
+              "optional" : [ "caps_lock" ]
             }
           },
           "to" : [ {
@@ -1559,7 +1628,10 @@
           "type" : "basic"
         }, {
           "from" : {
-            "key_code" : "left_shift"
+            "key_code" : "left_shift",
+            "modifiers" : {
+              "optional" : [ "caps_lock" ]
+            }
           },
           "to" : [ {
             "key_code" : "left_shift"
@@ -1572,7 +1644,10 @@
           "type" : "basic"
         }, {
           "from" : {
-            "key_code" : "right_shift"
+            "key_code" : "right_shift",
+            "modifiers" : {
+              "optional" : [ "caps_lock" ]
+            }
           },
           "to" : [ {
             "key_code" : "right_shift"

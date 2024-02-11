@@ -26,21 +26,22 @@
            [:!O#Pcaps_lock nil :hex {:afterup :f18}]]}
 
   {:des "Keymap for ctrl+cmd"
-   :rules [[:#Pleft_command :f13      ["map" 1]]                                   ;; clipboard
-           [:#Ptab {:ckey :dictation} ["map" 1]]                               ;; dictation
+   :rules [[:#Pleft_command :f13      ["map" 1]] ;; clipboard
+           [:#Ptab {:ckey :dictation} ["map" 1]] ;; dictation
            [:#Pw :!TSCkeypad_6        ["map" 1]] [:#Pq :!TSCkeypad_7  ["map" 1]] [:#Pd :f19 ["map" 1]]
            [:#Pn :!TSCkeypad_8        ["map" 1]] [:#Pr :!TCr          ["map" 1]]
 
-           [:#SPdelete_or_backspace :f15 ["map" 1]]
+           [:#SPdelete_or_backspace :f15 ["map" 1]] ;; screenshots and recording options
            [:#SPreturn_or_enter :f16  ["map" 1]]
            [:#SPbackslash :f17        ["map" 1]]
+           [:#Pf5 :!Of15 ["map" 1]] [:#Pv :!Of15 ["map" 1]] [:#SPf3 :f14 ["map" 1]]
 
            [:#Preturn :!TSCkeypad_7 ["map" 1]]
            [:#Pt [:exec "app Terminal"] ["map" 1]]                             ;; terminal
            [:#Pf {:modi [:control :command] :key f :repeat false} ["map" 1]]   ;; fullscreen
            [:#Pz nil ["map" 1] {:afterup "pmset sleepnow"}]                ;; sleep now
            [:#Pescape [:exec "app 'Activity Monitor'"] ["map" 1]] [:#Pc :!Fc ["map" 1]] ;; activity monitor/control center
-           [:#Pa :!Cspacebar ["map" 1]] [:#Px :!Cq ["map" 1]] [:!S#Px :!OSCescape ["map" 1]]    ;; spotlight/quit/force quit
+           [:#Pa :!Cspacebar ["map" 1]] [:#Px :!Cq ["map" 1]] [:!S#Px :!OSCescape ["map" 1]] ;; spotlight/quit/force quit
            [:#Ps nil ["map" 1] {:afterup [:exec "app ScreenSaverEngine"]}] ;; screensaver
 
            [:#Pleft_control "~/Library/Custom/Executables/lockscreen" ["map" 1]] ;; lock
@@ -49,7 +50,6 @@
            [:#Pe "~/Library/Custom/Executables/emoji" ["map" 1]]
 
            [:#Pf1 :illumination_decrement ["map" 1]]  [:#Pf2 :illumination_increment ["map" 1]]       ;; keyboard illumination
-           [:#SPf3 :f14 ["map" 1]]
 
            [:#Pgrave_accent_and_tilde :!TSCkeypad_0 ["map" 1]]
            [:#P1 :!TSCkeypad_1 ["map" 1]] [:#P2 :!TSCkeypad_2 ["map" 1]] [:#P3 :!TSCkeypad_3 ["map" 1]]
@@ -66,6 +66,8 @@
            [:#Pdown_arrow :!Tmission_control  ["map" 1]] [:#Pright_arrow  :!TC9 ["map" 1]]
            [:#Popen_bracket [:exec "menu 'menu item \"Tile Window to Left of Screen\" of menu 1 of menu bar item \"Window\"'"] ["map" 1]]
            [:#Pclose_bracket [:exec "menu 'menu item \"Tile Window to Right of Screen\" of menu 1 of menu bar item \"Window\"'"] ["map" 1]]
+           [:!S#Popen_bracket [:exec "menu 'menu item \"Move Window to Left Side of Screen\" of menu 1 of menu bar item \"Window\"'"] ["map" 1]]
+           [:!S#Pclose_bracket [:exec "menu 'menu item \"Move Window to Right Side of Screen\" of menu 1 of menu bar item \"Window\"'"] ["map" 1]]
 
            [:#Pequal_sign [:exec "ignoreEvents=$(defaults read org.p0deje.Maccy ignoreEvents)
                                   defaults write org.p0deje.Maccy ignoreEvents true
@@ -87,8 +89,8 @@
     [:!S#Pj {:mkey {:x -1000 :y 1000}}  ["map" 1]] [:!S#Pk {:mkey {:y 1414}}  ["map" 1]] [:!S#Pl {:mkey {:x 1000 :y 1000}}  ["map" 1]]
     [:!S#Pcomma {:pkey :button2} ["map" 1]] [:!S#Pperiod {:pkey :button3} ["map" 1]]
 
-    [:!S#EQPleft_arrow {:mkey {:hwheel 32}}               ["map" 1]] [:!S#EQPright_arrow {:mkey {:hwheel -32}}              ["map" 1]]
-    [:!S#EQPup_arrow {:mkey {:vwheel -32}}                ["map" 1]] [:!S#EQPdown_arrow {:mkey {:vwheel 32}}                ["map" 1]]
+    [:!S#Pleft_arrow {:mkey {:hwheel 32}}                 ["map" 1]] [:!S#Pright_arrow {:mkey {:hwheel -32}}                ["map" 1]]
+    [:!S#Pup_arrow {:mkey {:vwheel -32}}                  ["map" 1]] [:!S#Pdown_arrow {:mkey {:vwheel 32}}                  ["map" 1]]
 
     [:!S#Ph {:mkey {:speed 0.5}}        ["map" 1]] [:!S#Py {:mkey {:speed 0.25}} ["map" 1]] [:!S#P0 {:mkey {:speed 0.02}}   ["map" 1]]
     [:!S#Pn {:mkey {:speed 4}}          ["map" 1]] [:!S#Pm {:mkey {:speed 2}} ["map" 1]]
@@ -98,12 +100,12 @@
 
   {:des "Modifications"
    :rules
-   [[:!Ccaps_lock :f13]
+   [[:!C#Pcaps_lock :f13]
     [:!T#Pcaps_lock "~/Library/Custom/Executables/lockscreen"]
     [:!F##delete_or_backspace :delete_forward]
 
-    [:left_shift :left_shift ["map" 1]]
-    [:right_shift :right_shift ["map" 1]]
+    [:#Pleft_shift :#Pleft_shift ["map" 1]]
+    [:#Pright_shift :#Pright_shift ["map" 1]]
     [{:modi [:any] :any :key_code} :vk_none ["map" 1]]
     [:##caps_lock [:caps_lock, [:exec "play Tink"]]]]}]}
 
