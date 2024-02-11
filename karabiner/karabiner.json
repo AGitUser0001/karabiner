@@ -1166,6 +1166,11 @@
               "vertical_wheel" : 64
             }
           } ],
+          "conditions" : [ {
+            "name" : "map",
+            "value" : 1,
+            "type" : "variable_if"
+          } ],
           "type" : "basic"
         }, {
           "from" : {
@@ -1180,6 +1185,11 @@
             "mouse_key" : {
               "vertical_wheel" : -64
             }
+          } ],
+          "conditions" : [ {
+            "name" : "map",
+            "value" : 1,
+            "type" : "variable_if"
           } ],
           "type" : "basic"
         }, {

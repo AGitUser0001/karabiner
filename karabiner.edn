@@ -85,8 +85,8 @@
     ;; n m , . / ╶───⇧
     ;;───┘ ⌘─╴ ⌥ ← ↕︎ →
 
-    [:!S#Pequal_sign {:modi [:control :command] :mkey {:vwheel 64}}]  ;; zoom in
-    [:!S#Phyphen {:modi [:control :command] :mkey {:vwheel -64}}]     ;; zoom out
+    [:!S#Pequal_sign {:modi [:control :command] :mkey {:vwheel 64}} ["map" 1]]  ;; zoom in
+    [:!S#Phyphen {:modi [:control :command] :mkey {:vwheel -64}}    ["map" 1]]  ;; zoom out
 
     [:!S#P7 {:mkey {:x -1000 :y -1000}} ["map" 1]] [:!S#P8 {:mkey {:y -1414}} ["map" 1]] [:!S#P9 {:mkey {:x 1000 :y -1000}} ["map" 1]]
     [:!S#Pu {:mkey {:x -1414}}          ["map" 1]] [:!S#Pi {:pkey :button1}   ["map" 1]] [:!S#Po {:mkey {:x 1414}}          ["map" 1]]
