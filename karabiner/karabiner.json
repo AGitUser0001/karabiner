@@ -203,8 +203,8 @@
             }
           },
           "to" : [ {
-            "key_code" : "r",
-            "modifiers" : [ "left_command", "left_control" ]
+            "key_code" : "keypad_9",
+            "modifiers" : [ "left_command", "left_control", "left_shift" ]
           } ],
           "conditions" : [ {
             "name" : "map",
@@ -303,23 +303,6 @@
           },
           "to" : [ {
             "key_code" : "f14"
-          } ],
-          "conditions" : [ {
-            "name" : "map",
-            "value" : 1,
-            "type" : "variable_if"
-          } ],
-          "type" : "basic"
-        }, {
-          "from" : {
-            "key_code" : "return",
-            "modifiers" : {
-              "optional" : [ "caps_lock" ]
-            }
-          },
-          "to" : [ {
-            "key_code" : "keypad_7",
-            "modifiers" : [ "left_command", "left_control", "left_shift" ]
           } ],
           "conditions" : [ {
             "name" : "map",
@@ -505,13 +488,15 @@
           "type" : "basic"
         }, {
           "from" : {
-            "key_code" : "spacebar",
+            "key_code" : "e",
             "modifiers" : {
               "optional" : [ "caps_lock" ]
             }
           },
           "to" : [ {
-            "shell_command" : "~/Library/Custom/Executables/emoji"
+            "key_code" : "fn"
+          }, {
+            "key_code" : "vk_none"
           } ],
           "conditions" : [ {
             "name" : "map",
@@ -521,13 +506,15 @@
           "type" : "basic"
         }, {
           "from" : {
-            "key_code" : "e",
+            "key_code" : "spacebar",
             "modifiers" : {
               "optional" : [ "caps_lock" ]
             }
           },
           "to" : [ {
-            "shell_command" : "~/Library/Custom/Executables/emoji"
+            "key_code" : "fn"
+          }, {
+            "key_code" : "vk_none"
           } ],
           "conditions" : [ {
             "name" : "map",

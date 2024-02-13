@@ -29,14 +29,13 @@
    :rules [[:#Pleft_command :f13      ["map" 1]] ;; clipboard
            [:#Ptab {:ckey :dictation} ["map" 1]] ;; dictation
            [:#Pw :!TSCkeypad_6        ["map" 1]] [:#Pq :!TSCkeypad_7  ["map" 1]] [:#Pd :f19 ["map" 1]]
-           [:#Pn :!TSCkeypad_8        ["map" 1]] [:#Pr :!TCr          ["map" 1]]
+           [:#Pn :!TSCkeypad_8        ["map" 1]] [:#Pr :!TSCkeypad_9  ["map" 1]]
 
            [:#SPdelete_or_backspace :f15 ["map" 1]] ;; screenshots and recording options
            [:#SPreturn_or_enter :f16  ["map" 1]]
            [:#SPbackslash :f17        ["map" 1]]
            [:#Pf5 :!Of15 ["map" 1]] [:#Pv :!Of15 ["map" 1]] [:#SPf3 :f14 ["map" 1]]
 
-           [:#Preturn :!TSCkeypad_7 ["map" 1]]
            [:#Pt [:exec "app Terminal"] ["map" 1]]                             ;; terminal
            [:#Pf {:modi [:control :command] :key :f :repeat false} ["map" 1]]   ;; fullscreen
            {:type :basic :from {:key_code :z :modifiers {:optional [:caps_lock]}} :to_after_key_up
@@ -48,9 +47,9 @@
            [:#Ps nil ["map" 1] {:afterup [:exec "app ScreenSaverEngine"]}] ;; screensaver
 
            [:#Pleft_control "~/Library/Custom/Executables/lockscreen" ["map" 1]] ;; lock
-
-           [:#Pspacebar "~/Library/Custom/Executables/emoji" ["map" 1]] ;; emoji
-           [:#Pe "~/Library/Custom/Executables/emoji" ["map" 1]]
+           
+           [:#Pe        [:fn :vk_none] ["map" 1]] ;; emoji
+           [:#Pspacebar [:fn :vk_none] ["map" 1]]
 
            [:#Pf1 :illumination_decrement ["map" 1]]  [:#Pf2 :illumination_increment ["map" 1]] ;; keyboard illumination
 
