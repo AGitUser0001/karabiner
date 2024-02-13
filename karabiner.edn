@@ -26,7 +26,9 @@
            [:!O#Pcaps_lock nil :hex {:afterup :f18}]]}
 
   {:des "Keymap for ctrl+cmd"
-   :rules [[:#Pleft_command :f13      ["map" 1]] ;; clipboard
+   :rules [[:##fn [:caps_lock, [:exec "play Tink"]] ["map" 1]] ;; caps lock
+           [:#Pleft_command   :f13    ["map" 1]] ;; clipboard
+           [:#Pright_command  :f13    ["map" 1]]
            [:#Ptab {:ckey :dictation} ["map" 1]] ;; dictation
            [:#Pw :!TSCkeypad_6        ["map" 1]] [:#Pq :!TSCkeypad_7  ["map" 1]] [:#Pd :f19 ["map" 1]]
            [:#Pn :!TSCkeypad_8        ["map" 1]] [:#Pr :!TSCkeypad_9  ["map" 1]]
@@ -46,8 +48,9 @@
            [:#Pa :!Cspacebar ["map" 1]] [:#Px :!Cq ["map" 1]] [:!S#Px :!OSCescape ["map" 1]] ;; spotlight/quit/force quit
            [:#Ps nil ["map" 1] {:afterup [:exec "app ScreenSaverEngine"]}] ;; screensaver
 
-           [:#Pleft_control "~/Library/Custom/Executables/lockscreen" ["map" 1]] ;; lock
-           
+           [:#Pleft_control "~/Library/Custom/Executables/lockscreen"   ["map" 1]] ;; lock
+           [:#Pright_control "~/Library/Custom/Executables/lockscreen"  ["map" 1]]
+
            [:#Pe        [:fn :vk_none] ["map" 1]] ;; emoji
            [:#Pspacebar [:fn :vk_none] ["map" 1]]
 
@@ -64,7 +67,7 @@
            [:#Pm :!TCkeypad_0   ["map" 1]] [:#Pcomma :!TC7    ["map" 1]] [:#Pperiod :!TC5   ["map" 1]]
            [:#Psemicolon :!TC2  ["map" 1]] [:#Pquote :!TC4    ["map" 1]] [:#Pslash :!TC3    ["map" 1]]
 
-           [:#Pup_arrow   :mission_control    ["map" 1]] [:#Pleft_arrow   :!TC8  ["map" 1]]
+           [:#Pup_arrow   :mission_control    ["map" 1]] [:#Pleft_arrow   :!TC8 ["map" 1]]
            [:#Pdown_arrow :!Tmission_control  ["map" 1]] [:#Pright_arrow  :!TC9 ["map" 1]]
            [:#Popen_bracket [:exec "menu 'menu item \"Tile Window to Left of Screen\" of menu 1 of menu bar item \"Window\"'"] ["map" 1]]
            [:#Pclose_bracket [:exec "menu 'menu item \"Tile Window to Right of Screen\" of menu 1 of menu bar item \"Window\"'"] ["map" 1]]
@@ -101,6 +104,7 @@
     [:!S#Ph {:mkey {:speed 0.5}}        ["map" 1]] [:!S#Py {:mkey {:speed 0.25}} ["map" 1]] [:!S#P0 {:mkey {:speed 0.02}}   ["map" 1]]
     [:!S#Pn {:mkey {:speed 4}}          ["map" 1]] [:!S#Pm {:mkey {:speed 2}} ["map" 1]]
 
+    [:!S#Pleft_command {:mkey {:speed 4}}                 ["map" 1]] [:!S#Pleft_option {:mkey {:speed 2}}                   ["map" 1]]
     [:!S#Pright_command {:mkey {:speed 4}}                ["map" 1]] [:!S#Pright_option {:mkey {:speed 2}}                  ["map" 1]]
     [:!S#Pslash {:mkey {:speed 0.5}}                      ["map" 1]]]}
 
@@ -110,8 +114,8 @@
     [:!T#Pcaps_lock "~/Library/Custom/Executables/lockscreen"]
     [:!F##delete_or_backspace :delete_forward]
 
-    [:#Pleft_shift :#Pleft_shift ["map" 1]]
-    [:#Pright_shift :#Pright_shift ["map" 1]]
+    [:#Pleft_shift  :#Pleft_shift   ["map" 1]]
+    [:#Pright_shift :#Pright_shift  ["map" 1]]
     [{:modi [:any] :any :key_code} :vk_none ["map" 1]]
     [:##caps_lock [:caps_lock, [:exec "play Tink"]]]]}]}
 
