@@ -18,25 +18,26 @@
 
  :main
  [{:des "Change caps_lock to 'map' layer, if alone caps_lock and sound"
-   :rules [[:#SPcaps_lock ["map" 1] nil {:afterup ["map" 0]
-                                         :alone [:caps_lock, [:exec "play Tink"]]}]]}
+   :rules [[:#SSPcaps_lock ["map" 1] nil {:afterup ["map" 0]
+                                          :alone [:caps_lock, [:exec "play Tink"]]}]]}
 
   {:des "Unicode Hex Input"
-   :rules [[:!O#Pcaps_lock [:hex :left_option] :!hex {:afterup :f18 :alone {:input :hex :halt true}}]
-           [:!O#Pcaps_lock nil :hex {:afterup :f18}]]}
+   :rules [[:!OO#Pcaps_lock [:hex :left_option] :!hex {:afterup :f18 :alone {:input :hex :halt true}}]
+           [:!OO#Pcaps_lock nil :hex {:afterup :f18}]]}
 
   {:des "Keymap for ctrl+cmd"
-   :rules [[:##fn [:caps_lock, [:exec "play Tink"]] ["map" 1]] ;; caps lock
-           [:#Pleft_command   :f13    ["map" 1]] ;; clipboard
-           [:#Pright_command  :f13    ["map" 1]]
+   :rules [[:##fn [:caps_lock, [:exec "play Tink"]]     ["map" 1]] ;; caps lock
+           [:#Pleft_command   {:key :f13 :repeat false} ["map" 1]] ;; clipboard
+           [:#Pright_command  {:key :f13 :repeat false} ["map" 1]]
+
            [:#Ptab {:ckey :dictation} ["map" 1]] ;; dictation
            [:#Pw :!TSCkeypad_6        ["map" 1]] [:#Pq :!TSCkeypad_7  ["map" 1]] [:#Pd :f19 ["map" 1]]
            [:#Pn :!TSCkeypad_8        ["map" 1]] [:#Pr :!TSCkeypad_9  ["map" 1]]
 
-           [:#SPdelete_or_backspace :f15 ["map" 1]] ;; screenshots and recording options
-           [:#SPreturn_or_enter :f16  ["map" 1]]
-           [:#SPbackslash :f17        ["map" 1]]
-           [:#Pf5 :!Of15 ["map" 1]] [:#Pv :!Of15 ["map" 1]] [:#SPf3 :f14 ["map" 1]]
+           [:#SSPdelete_or_backspace :f15 ["map" 1]] ;; screenshots and recording options
+           [:#SSPreturn_or_enter :f16  ["map" 1]]
+           [:#SSPbackslash :f17        ["map" 1]]
+           [:#Pf5 :!Of15 ["map" 1]] [:#Pv :!Of15 ["map" 1]] [:#SSPf3 :f14 ["map" 1]]
 
            [:#Pt [:exec "app Terminal"] ["map" 1]]                             ;; terminal
            [:#Pf {:modi [:control :command] :key :f :repeat false} ["map" 1]]   ;; fullscreen
@@ -45,7 +46,7 @@
              {:software_function {:iokit_power_management_sleep_system {:delay_milliseconds 0}}}]
             :conditions [{:type "variable_if" :name "map" :value 1}]} ;; sleep now
            [:#Pescape [:exec "app 'Activity Monitor'"] ["map" 1]] [:#Pc :!Fc ["map" 1]] ;; activity monitor/control center
-           [:#Pa :!Cspacebar ["map" 1]] [:#Px :!Cq ["map" 1]] [:!S#Px :!OSCescape ["map" 1]] ;; spotlight/quit/force quit
+           [:#Pa :!Cspacebar ["map" 1]] [:#Px :!Cq ["map" 1]] [:!SS#Px :!OSCescape ["map" 1]] ;; spotlight/quit/force quit
            [:#Ps nil ["map" 1] {:afterup [:exec "app ScreenSaverEngine"]}] ;; screensaver
 
            [:#Pleft_control "~/Library/Custom/Executables/lockscreen"   ["map" 1]] ;; lock
@@ -71,8 +72,8 @@
            [:#Pdown_arrow :!Tmission_control  ["map" 1]] [:#Pright_arrow  :!TC9 ["map" 1]]
            [:#Popen_bracket [:exec "menu 'menu item \"Tile Window to Left of Screen\" of menu 1 of menu bar item \"Window\"'"] ["map" 1]]
            [:#Pclose_bracket [:exec "menu 'menu item \"Tile Window to Right of Screen\" of menu 1 of menu bar item \"Window\"'"] ["map" 1]]
-           [:!S#Popen_bracket [:exec "menu 'menu item \"Move Window to Left Side of Screen\" of menu 1 of menu bar item \"Window\"'"] ["map" 1]]
-           [:!S#Pclose_bracket [:exec "menu 'menu item \"Move Window to Right Side of Screen\" of menu 1 of menu bar item \"Window\"'"] ["map" 1]]
+           [:!SS#Popen_bracket [:exec "menu 'menu item \"Move Window to Left Side of Screen\" of menu 1 of menu bar item \"Window\"'"] ["map" 1]]
+           [:!SS#Pclose_bracket [:exec "menu 'menu item \"Move Window to Right Side of Screen\" of menu 1 of menu bar item \"Window\"'"] ["map" 1]]
 
            [:#Pequal_sign [:exec "ignoreEvents=$(defaults read org.p0deje.Maccy ignoreEvents)
                                   defaults write org.p0deje.Maccy ignoreEvents true
@@ -90,28 +91,28 @@
     ;; n m , . / ╶───⇧
     ;;───┘ ⌘─╴ ⌥ ← ↕︎ →
 
-    [:!S#Pequal_sign {:modi [:control :command] :mkey {:vwheel 64}} ["map" 1]]  ;; zoom in
-    [:!S#Phyphen {:modi [:control :command] :mkey {:vwheel -64}}    ["map" 1]]  ;; zoom out
+    [:!SS#Pequal_sign {:modi [:control :command] :mkey {:vwheel 64}}  ["map" 1]]  ;; zoom in
+    [:!SS#Phyphen {:modi [:control :command] :mkey {:vwheel -64}}     ["map" 1]]  ;; zoom out
 
-    [:!S#P7 {:mkey {:x -1000 :y -1000}} ["map" 1]] [:!S#P8 {:mkey {:y -1414}} ["map" 1]] [:!S#P9 {:mkey {:x 1000 :y -1000}} ["map" 1]]
-    [:!S#Pu {:mkey {:x -1414}}          ["map" 1]] [:!S#Pi {:pkey :button1}   ["map" 1]] [:!S#Po {:mkey {:x 1414}}          ["map" 1]]
-    [:!S#Pj {:mkey {:x -1000 :y 1000}}  ["map" 1]] [:!S#Pk {:mkey {:y 1414}}  ["map" 1]] [:!S#Pl {:mkey {:x 1000 :y 1000}}  ["map" 1]]
-    [:!S#Pcomma {:pkey :button2} ["map" 1]] [:!S#Pperiod {:pkey :button3} ["map" 1]]
+    [:!SS#P7 {:mkey {:x -1000 :y -1000}}  ["map" 1]] [:!SS#P8 {:mkey {:y -1414}}  ["map" 1]] [:!SS#P9 {:mkey {:x 1000 :y -1000}}  ["map" 1]]
+    [:!SS#Pu {:mkey {:x -1414}}           ["map" 1]] [:!SS#Pi {:pkey :button1}    ["map" 1]] [:!SS#Po {:mkey {:x 1414}}           ["map" 1]]
+    [:!SS#Pj {:mkey {:x -1000 :y 1000}}   ["map" 1]] [:!SS#Pk {:mkey {:y 1414}}   ["map" 1]] [:!SS#Pl {:mkey {:x 1000 :y 1000}}   ["map" 1]]
+    [:!SS#Pcomma {:pkey :button2}       ["map" 1]] [:!SS#Pperiod {:pkey :button3} ["map" 1]]
 
-    [:!S#Pleft_arrow {:mkey {:hwheel 32}}                 ["map" 1]] [:!S#Pright_arrow {:mkey {:hwheel -32}}                ["map" 1]]
-    [:!S#Pup_arrow {:mkey {:vwheel -32}}                  ["map" 1]] [:!S#Pdown_arrow {:mkey {:vwheel 32}}                  ["map" 1]]
+    [:!SS#Pleft_arrow {:mkey {:hwheel 32}}                 ["map" 1]] [:!SS#Pright_arrow {:mkey {:hwheel -32}}                ["map" 1]]
+    [:!SS#Pup_arrow {:mkey {:vwheel -32}}                  ["map" 1]] [:!SS#Pdown_arrow {:mkey {:vwheel 32}}                  ["map" 1]]
 
-    [:!S#Ph {:mkey {:speed 0.5}}        ["map" 1]] [:!S#Py {:mkey {:speed 0.25}} ["map" 1]] [:!S#P0 {:mkey {:speed 0.02}}   ["map" 1]]
-    [:!S#Pn {:mkey {:speed 4}}          ["map" 1]] [:!S#Pm {:mkey {:speed 2}} ["map" 1]]
+    [:!SS#Ph {:mkey {:speed 0.5}}        ["map" 1]] [:!SS#Py {:mkey {:speed 0.25}} ["map" 1]] [:!SS#P0 {:mkey {:speed 0.02}}   ["map" 1]]
+    [:!SS#Pn {:mkey {:speed 4}}          ["map" 1]] [:!SS#Pm {:mkey {:speed 2}} ["map" 1]]
 
-    [:!S#Pleft_command {:mkey {:speed 4}}                 ["map" 1]] [:!S#Pleft_option {:mkey {:speed 2}}                   ["map" 1]]
-    [:!S#Pright_command {:mkey {:speed 4}}                ["map" 1]] [:!S#Pright_option {:mkey {:speed 2}}                  ["map" 1]]
-    [:!S#Pslash {:mkey {:speed 0.5}}                      ["map" 1]]]}
+    [:!SS#Pleft_command {:mkey {:speed 4}}                 ["map" 1]] [:!SS#Pleft_option {:mkey {:speed 2}}                   ["map" 1]]
+    [:!SS#Pright_command {:mkey {:speed 4}}                ["map" 1]] [:!SS#Pright_option {:mkey {:speed 2}}                  ["map" 1]]
+    [:!SS#Pslash {:mkey {:speed 0.5}}                      ["map" 1]]]}
 
   {:des "Modifications"
    :rules
-   [[:!C#Pcaps_lock :f13]
-    [:!T#Pcaps_lock "~/Library/Custom/Executables/lockscreen"]
+   [[:!CC#Pcaps_lock {:key :f13 :repeat false}]
+    [:!TT#Pcaps_lock "~/Library/Custom/Executables/lockscreen"]
     [:!F##delete_or_backspace :delete_forward]
 
     [:#Pleft_shift  :#Pleft_shift   ["map" 1]]
