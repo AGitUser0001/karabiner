@@ -152,11 +152,29 @@
           "from" : {
             "key_code" : "tab",
             "modifiers" : {
-              "optional" : [ "shift", "caps_lock" ]
+              "optional" : [ "caps_lock" ]
             }
           },
           "to" : [ {
-            "key_code" : "f20"
+            "key_code" : "keypad_plus",
+            "modifiers" : [ "left_command", "left_control", "left_shift" ]
+          } ],
+          "conditions" : [ {
+            "name" : "map",
+            "value" : 1,
+            "type" : "variable_if"
+          } ],
+          "type" : "basic"
+        }, {
+          "from" : {
+            "key_code" : "tab",
+            "modifiers" : {
+              "optional" : [ "caps_lock" ]
+            }
+          },
+          "to" : [ {
+            "key_code" : "keypad_hyphen",
+            "modifiers" : [ "left_command", "left_control", "left_shift" ]
           } ],
           "conditions" : [ {
             "name" : "map",
