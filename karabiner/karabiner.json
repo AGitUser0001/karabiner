@@ -152,11 +152,11 @@
           "from" : {
             "key_code" : "tab",
             "modifiers" : {
-              "optional" : [ "caps_lock" ]
+              "optional" : [ "shift", "caps_lock" ]
             }
           },
           "to" : [ {
-            "consumer_key_code" : "dictation"
+            "key_code" : "f20"
           } ],
           "conditions" : [ {
             "name" : "map",
