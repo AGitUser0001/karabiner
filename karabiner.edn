@@ -30,7 +30,7 @@
            [:#Pleft_command   {:key :f13 :repeat false} ["map" 1]] ;; clipboard
            [:#Pright_command  {:key :f13 :repeat false} ["map" 1]]
 
-           [:#Ptab :!TSCkeypad_plus   ["map" 1]] [:#Ptab :!TSCkeypad_hyphen ["map" 1]]
+           [:#Ptab :!TSCkeypad_plus   ["map" 1]] [:!SS#Ptab :!TSCkeypad_hyphen ["map" 1]]
            [:#Pw :!TSCkeypad_6        ["map" 1]] [:#Pq :!TSCkeypad_7        ["map" 1]] [:#Pd :f19 ["map" 1]]
            [:#Pn :!TSCkeypad_8        ["map" 1]] [:#Pr :!TSCkeypad_9        ["map" 1]]
 

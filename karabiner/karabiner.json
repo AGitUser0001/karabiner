@@ -169,6 +169,7 @@
           "from" : {
             "key_code" : "tab",
             "modifiers" : {
+              "mandatory" : [ "shift" ],
               "optional" : [ "caps_lock" ]
             }
           },
