@@ -25,7 +25,7 @@
    :rules [[:!OO#Pcaps_lock [:hex :left_option] :!hex {:afterup :f18 :alone {:input :hex :halt true}}]
            [:!OO#Pcaps_lock nil :hex {:afterup :f18}]]}
 
-  {:des "Keymap for ctrl+cmd"
+  {:des "Keymap for 'map' layer"
    :rules [[:##fn [:caps_lock, [:exec "play Tink"]]     ["map" 1]] ;; caps lock
            [:#Pleft_command   {:key :f13 :repeat false} ["map" 1]] ;; clipboard
            [:#Pright_command  {:key :f13 :repeat false} ["map" 1]]

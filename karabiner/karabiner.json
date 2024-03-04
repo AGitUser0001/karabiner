@@ -95,7 +95,7 @@
           "type" : "basic"
         } ]
       }, {
-        "description" : "Keymap for ctrl+cmd",
+        "description" : "Keymap for 'map' layer",
         "manipulators" : [ {
           "from" : {
             "key_code" : "fn",
