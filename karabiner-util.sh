@@ -1,7 +1,7 @@
 #!/bin/sh
 export ZDOTDIR=~/.zsh
 if test -f $ZDOTDIR/homebrew-env.sh; then
-  source ~/.zsh/homebrew-env.sh
+  source $ZDOTDIR/homebrew-env.sh
 else
   export HOMEBREW_PREFIX="/opt/homebrew"
 fi
