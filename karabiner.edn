@@ -113,7 +113,6 @@
    :rules
    [[:!CC#Pcaps_lock {:key :f13 :repeat false}]
     [:!TT#Pcaps_lock "~/Library/Custom/Executables/lockscreen"]
-    [:!F##delete_or_backspace :delete_forward]
 
     [:#Pleft_shift  :#Pleft_shift   ["map" 1]]
     [:#Pright_shift :#Pright_shift  ["map" 1]]
