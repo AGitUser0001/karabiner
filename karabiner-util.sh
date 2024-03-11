@@ -1,9 +1,8 @@
 #!/bin/sh
 export ZDOTDIR=~/.zsh
-if test -f $ZDOTDIR/homebrew-env.sh; then
-  source $ZDOTDIR/homebrew-env.sh
-else
-  export HOMEBREW_PREFIX="/opt/homebrew"
+export HOMEBREW_PREFIX=/usr/local
+if test -e /opt/homebrew; then
+  export HOMEBREW_PREFIX=/opt/homebrew
 fi
 
 menu() {
