@@ -97,7 +97,7 @@
     [:!SS#P7 {:mkey {:x -1000 :y -1000}}  ["map" 1]] [:!SS#P8 {:mkey {:y -1414}}  ["map" 1]] [:!SS#P9 {:mkey {:x 1000 :y -1000}}  ["map" 1]]
     [:!SS#Pu {:mkey {:x -1414}}           ["map" 1]] [:!SS#Pi {:pkey :button1}    ["map" 1]] [:!SS#Po {:mkey {:x 1414}}           ["map" 1]]
     [:!SS#Pj {:mkey {:x -1000 :y 1000}}   ["map" 1]] [:!SS#Pk {:mkey {:y 1414}}   ["map" 1]] [:!SS#Pl {:mkey {:x 1000 :y 1000}}   ["map" 1]]
-    [:!SS#Pcomma {:pkey :button2}       ["map" 1]] [:!SS#Pperiod {:pkey :button3} ["map" 1]]
+    [:!SS#Pcomma {:pkey :button2}         ["map" 1]] [:!SS#Pperiod {:pkey :button3} ["map" 1]]
 
     [:!SS#Pleft_arrow {:mkey {:hwheel 32}}                 ["map" 1]] [:!SS#Pright_arrow {:mkey {:hwheel -32}}                ["map" 1]]
     [:!SS#Pup_arrow {:mkey {:vwheel -32}}                  ["map" 1]] [:!SS#Pdown_arrow {:mkey {:vwheel 32}}                  ["map" 1]]
