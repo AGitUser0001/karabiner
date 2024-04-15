@@ -1917,7 +1917,7 @@
         "consumer_key_code" : "volume_increment"
       } ]
     } ],
-    "name" : "􀆔",
+    "name" : "⌘",
     "parameters" : {
       "delay_milliseconds_before_open_device" : 1000
     },
