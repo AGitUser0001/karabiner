@@ -1791,7 +1791,6 @@
     },
     "devices" : [ {
       "mouse_swap_xy" : false,
-      "mouse_discard_y" : false,
       "identifiers" : {
         "is_game_pad" : false,
         "is_keyboard" : true,
@@ -1802,12 +1801,9 @@
       "fn_function_keys" : [ ],
       "ignore" : false,
       "disable_built_in_keyboard_if_exists" : false,
-      "mouse_discard_horizontal_wheel" : false,
       "mouse_flip_vertical_wheel" : false,
-      "mouse_discard_x" : false,
       "game_pad_swap_sticks" : false,
       "mouse_flip_horizontal_wheel" : false,
-      "mouse_discard_vertical_wheel" : false,
       "manipulate_caps_lock_led" : true,
       "mouse_flip_y" : false,
       "mouse_swap_wheels" : false,
@@ -1816,7 +1812,6 @@
       "mouse_flip_x" : false
     }, {
       "mouse_swap_xy" : false,
-      "mouse_discard_y" : false,
       "identifiers" : {
         "is_game_pad" : false,
         "is_keyboard" : false,
@@ -1827,12 +1822,9 @@
       "fn_function_keys" : [ ],
       "ignore" : true,
       "disable_built_in_keyboard_if_exists" : false,
-      "mouse_discard_horizontal_wheel" : false,
       "mouse_flip_vertical_wheel" : false,
-      "mouse_discard_x" : false,
       "game_pad_swap_sticks" : false,
       "mouse_flip_horizontal_wheel" : false,
-      "mouse_discard_vertical_wheel" : false,
       "manipulate_caps_lock_led" : false,
       "mouse_flip_y" : false,
       "mouse_swap_wheels" : false,
@@ -1925,7 +1917,7 @@
         "consumer_key_code" : "volume_increment"
       } ]
     } ],
-    "name" : "｜",
+    "name" : "􀆔",
     "parameters" : {
       "delay_milliseconds_before_open_device" : 1000
     },
