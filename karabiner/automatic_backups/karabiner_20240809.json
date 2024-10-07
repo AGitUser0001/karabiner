@@ -1,8 +1,10 @@
 {
   "global" : {
     "ask_for_confirmation_before_quitting" : false,
+    "check_for_updates_on_startup" : true,
     "show_in_menu_bar" : false,
-    "show_profile_name_in_menu_bar" : true
+    "show_profile_name_in_menu_bar" : true,
+    "unsafe_ui" : false
   },
   "profiles" : [ {
     "complex_modifications" : {
@@ -16,8 +18,7 @@
         "description" : "Change caps_lock to 'map' layer, if alone caps_lock and sound",
         "manipulators" : [ {
           "to_if_alone" : [ {
-            "key_code" : "caps_lock",
-            "hold_down_milliseconds" : 100
+            "key_code" : "caps_lock"
           }, {
             "shell_command" : "source ~/.config/karabiner-util.sh\nplay Tink"
           } ],
@@ -103,8 +104,7 @@
             }
           },
           "to" : [ {
-            "key_code" : "caps_lock",
-            "hold_down_milliseconds" : 100
+            "key_code" : "caps_lock"
           }, {
             "shell_command" : "source ~/.config/karabiner-util.sh\nplay Tink"
           } ],
@@ -1781,8 +1781,7 @@
             }
           },
           "to" : [ {
-            "key_code" : "caps_lock",
-            "hold_down_milliseconds" : 100
+            "key_code" : "caps_lock"
           }, {
             "shell_command" : "source ~/.config/karabiner-util.sh\nplay Tink"
           } ],
@@ -1790,18 +1789,152 @@
         } ]
       } ]
     },
+    "devices" : [ {
+      "mouse_swap_xy" : false,
+      "mouse_discard_y" : false,
+      "identifiers" : {
+        "is_game_pad" : false,
+        "is_keyboard" : true,
+        "is_pointing_device" : false,
+        "product_id" : 0,
+        "vendor_id" : 0
+      },
+      "fn_function_keys" : [ ],
+      "ignore" : false,
+      "disable_built_in_keyboard_if_exists" : false,
+      "mouse_discard_horizontal_wheel" : false,
+      "mouse_flip_vertical_wheel" : false,
+      "mouse_discard_x" : false,
+      "game_pad_swap_sticks" : false,
+      "mouse_flip_horizontal_wheel" : false,
+      "mouse_discard_vertical_wheel" : false,
+      "manipulate_caps_lock_led" : true,
+      "mouse_flip_y" : false,
+      "mouse_swap_wheels" : false,
+      "simple_modifications" : [ ],
+      "treat_as_built_in_keyboard" : false,
+      "mouse_flip_x" : false
+    }, {
+      "mouse_swap_xy" : false,
+      "mouse_discard_y" : false,
+      "identifiers" : {
+        "is_game_pad" : false,
+        "is_keyboard" : false,
+        "is_pointing_device" : true,
+        "product_id" : 0,
+        "vendor_id" : 0
+      },
+      "fn_function_keys" : [ ],
+      "ignore" : true,
+      "disable_built_in_keyboard_if_exists" : false,
+      "mouse_discard_horizontal_wheel" : false,
+      "mouse_flip_vertical_wheel" : false,
+      "mouse_discard_x" : false,
+      "game_pad_swap_sticks" : false,
+      "mouse_flip_horizontal_wheel" : false,
+      "mouse_discard_vertical_wheel" : false,
+      "manipulate_caps_lock_led" : false,
+      "mouse_flip_y" : false,
+      "mouse_swap_wheels" : false,
+      "simple_modifications" : [ ],
+      "treat_as_built_in_keyboard" : false,
+      "mouse_flip_x" : false
+    } ],
     "fn_function_keys" : [ {
+      "from" : {
+        "key_code" : "f1"
+      },
+      "to" : [ {
+        "consumer_key_code" : "display_brightness_decrement"
+      } ]
+    }, {
+      "from" : {
+        "key_code" : "f2"
+      },
+      "to" : [ {
+        "consumer_key_code" : "display_brightness_increment"
+      } ]
+    }, {
+      "from" : {
+        "key_code" : "f3"
+      },
+      "to" : [ {
+        "apple_vendor_keyboard_key_code" : "mission_control"
+      } ]
+    }, {
+      "from" : {
+        "key_code" : "f4"
+      },
+      "to" : [ {
+        "apple_vendor_keyboard_key_code" : "spotlight"
+      } ]
+    }, {
+      "from" : {
+        "key_code" : "f5"
+      },
+      "to" : [ {
+        "consumer_key_code" : "dictation"
+      } ]
+    }, {
       "from" : {
         "key_code" : "f6"
       },
       "to" : [ {
         "key_code" : "f19"
       } ]
+    }, {
+      "from" : {
+        "key_code" : "f7"
+      },
+      "to" : [ {
+        "consumer_key_code" : "rewind"
+      } ]
+    }, {
+      "from" : {
+        "key_code" : "f8"
+      },
+      "to" : [ {
+        "consumer_key_code" : "play_or_pause"
+      } ]
+    }, {
+      "from" : {
+        "key_code" : "f9"
+      },
+      "to" : [ {
+        "consumer_key_code" : "fast_forward"
+      } ]
+    }, {
+      "from" : {
+        "key_code" : "f10"
+      },
+      "to" : [ {
+        "consumer_key_code" : "mute"
+      } ]
+    }, {
+      "from" : {
+        "key_code" : "f11"
+      },
+      "to" : [ {
+        "consumer_key_code" : "volume_decrement"
+      } ]
+    }, {
+      "from" : {
+        "key_code" : "f12"
+      },
+      "to" : [ {
+        "consumer_key_code" : "volume_increment"
+      } ]
     } ],
     "name" : "｜",
+    "parameters" : {
+      "delay_milliseconds_before_open_device" : 1000
+    },
     "selected" : true,
+    "simple_modifications" : [ ],
     "virtual_hid_keyboard" : {
-      "keyboard_type_v2" : "ansi"
+      "country_code" : 0,
+      "indicate_sticky_modifier_keys_state" : true,
+      "mouse_key_xy_scale" : 100
     }
   } ]
 }

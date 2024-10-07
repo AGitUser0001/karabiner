@@ -6,7 +6,7 @@
 
  :input-sources {:hex {:input_source_id "(.|^)UnicodeHexInput$"}}
 
- :tos {:hex {:input :hex}}
+ :tos {:hex {:input :hex} :to_caps_lock {:key :caps_lock :hold_down_ms 100}}
 
  :templates {:exec "source ~/.config/karabiner-util.sh\n%s"}
 
@@ -19,14 +19,14 @@
  :main
  [{:des "Change caps_lock to 'map' layer, if alone caps_lock and sound"
    :rules [[:#SSPcaps_lock ["map" 1] nil {:afterup ["map" 0]
-                                          :alone [:caps_lock, [:exec "play Tink"]]}]]}
+                                          :alone [:to_caps_lock, [:exec "play Tink"]]}]]}
 
   {:des "Unicode Hex Input"
    :rules [[:!OO#Pcaps_lock [:hex :left_option] :!hex {:afterup :f18 :alone {:input :hex :halt true}}]
            [:!OO#Pcaps_lock nil :hex {:afterup :f18}]]}
 
   {:des "Keymap for 'map' layer"
-   :rules [[:##fn [:caps_lock, [:exec "play Tink"]]     ["map" 1]] ;; caps lock
+   :rules [[:##fn [:to_caps_lock, [:exec "play Tink"]]     ["map" 1]] ;; caps lock
            [:#Pleft_command   {:key :f13 :repeat false} ["map" 1]] ;; clipboard
            [:#Pright_command  {:key :f13 :repeat false} ["map" 1]]
 
@@ -117,5 +117,4 @@
     [:#Pleft_shift  :#Pleft_shift   ["map" 1]]
     [:#Pright_shift :#Pright_shift  ["map" 1]]
     [{:modi [:any] :any :key_code} :vk_none ["map" 1]]
-    [:##caps_lock [:caps_lock, [:exec "play Tink"]]]]}]}
-
+    [:##caps_lock [:to_caps_lock, [:exec "play Tink"]]]]}]}
