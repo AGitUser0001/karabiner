@@ -69,10 +69,10 @@
 
            [:#Pup_arrow   :mission_control    ["map" 1]] [:#Pleft_arrow   :!TC8 ["map" 1]]
            [:#Pdown_arrow :!Tmission_control  ["map" 1]] [:#Pright_arrow  :!TC9 ["map" 1]]
-           [:#Popen_bracket [:exec "menu 'menu item \"Tile Window to Left of Screen\" of menu 1 of menu bar item \"Window\"'"] ["map" 1]]
-           [:#Pclose_bracket [:exec "menu 'menu item \"Tile Window to Right of Screen\" of menu 1 of menu bar item \"Window\"'"] ["map" 1]]
-           [:!SS#Popen_bracket [:exec "menu 'menu item \"Move Window to Left Side of Screen\" of menu 1 of menu bar item \"Window\"'"] ["map" 1]]
-           [:!SS#Pclose_bracket [:exec "menu 'menu item \"Move Window to Right Side of Screen\" of menu 1 of menu bar item \"Window\"'"] ["map" 1]]
+           [:#Popen_bracket [:exec "menu 'menu item \"Left of Screen\" of menu 1 of menu item \"Full Screen Tile\" of menu 1 of menu bar item \"Window\"'"] ["map" 1]]
+           [:#Pclose_bracket [:exec "menu 'menu item \"Right of Screen\" of menu 1 of menu item \"Full Screen Tile\" of menu 1 of menu bar item \"Window\"'"] ["map" 1]]
+           [:!SS#Popen_bracket [:exec "menu 'process \"Rectangle\"' 'menu item \"Left Half\" of menu 1' 2"] ["map" 1]]
+           [:!SS#Pclose_bracket [:exec "menu 'process \"Rectangle\"' 'menu item \"Right Half\" of menu 1' 2"] ["map" 1]]
 
            [:#Pequal_sign [:exec "ignoreEvents=$(defaults read org.p0deje.Maccy ignoreEvents)
                                   defaults write org.p0deje.Maccy ignoreEvents true
