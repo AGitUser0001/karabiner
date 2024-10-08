@@ -19,14 +19,14 @@
  :main
  [{:des "Change caps_lock to 'map' layer, if alone caps_lock and sound"
    :rules [[:#SSPcaps_lock ["map" 1] nil {:afterup ["map" 0]
-                                          :alone [:to_caps_lock, [:exec "play Tink"]]}]]}
+                                          :alone [[:exec "play Tink"], :to_caps_lock]}]]}
 
   {:des "Unicode Hex Input"
    :rules [[:!OO#Pcaps_lock [:hex :left_option] :!hex {:afterup :f18 :alone {:input :hex :halt true}}]
            [:!OO#Pcaps_lock nil :hex {:afterup :f18}]]}
 
   {:des "Keymap for 'map' layer"
-   :rules [[:##fn [:to_caps_lock, [:exec "play Tink"]]     ["map" 1]] ;; caps lock
+   :rules [[:##fn [[:exec "play Tink"], :to_caps_lock]     ["map" 1]] ;; caps lock
            [:#Pleft_command   {:key :f13 :repeat false} ["map" 1]] ;; clipboard
            [:#Pright_command  {:key :f13 :repeat false} ["map" 1]]
 
@@ -116,4 +116,4 @@
     [:#Pleft_shift  :#Pleft_shift   ["map" 1]]
     [:#Pright_shift :#Pright_shift  ["map" 1]]
     [{:modi [:any] :any :key_code} :vk_none ["map" 1]]
-    [:##caps_lock [:to_caps_lock, [:exec "play Tink"]]]]}]}
+    [:##caps_lock [[:exec "play Tink"], :to_caps_lock]]]}]}
