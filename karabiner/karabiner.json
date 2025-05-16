@@ -16,7 +16,7 @@
         "description" : "Change caps_lock to 'map' layer, if alone caps_lock and sound",
         "manipulators" : [ {
           "to_if_alone" : [ {
-            "shell_command" : "source ~/.config/karabiner-util.sh\nplay Tink"
+            "shell_command" : "afplay /System/Library/Sounds/Tink.aiff & exit"
           }, {
             "key_code" : "caps_lock",
             "hold_down_milliseconds" : 100
@@ -103,7 +103,7 @@
             }
           },
           "to" : [ {
-            "shell_command" : "source ~/.config/karabiner-util.sh\nplay Tink"
+            "shell_command" : "afplay /System/Library/Sounds/Tink.aiff & exit"
           }, {
             "key_code" : "caps_lock",
             "hold_down_milliseconds" : 100
@@ -1181,22 +1181,6 @@
             "type" : "variable_if"
           } ],
           "type" : "basic"
-        }, {
-          "from" : {
-            "key_code" : "equal_sign",
-            "modifiers" : {
-              "optional" : [ "caps_lock" ]
-            }
-          },
-          "to" : [ {
-            "shell_command" : "source ~/.config/karabiner-util.sh\nignoreEvents=$(defaults read org.p0deje.Maccy ignoreEvents)\n                                  defaults write org.p0deje.Maccy ignoreEvents true\n                                  menu 'menu item \"Copy\" of menu 1 of menu bar item \"Edit\"'\n                                  defaults write org.p0deje.Maccy ignoreEvents $ignoreEvents\n                                  read -d '' output <<< \"$(pbpaste | tr -d '[:space:]' | bc -l 2>&1)\"\n                                  printf %s \"$output\" | pbcopy\n                                  menu 'menu item \"Paste\" of menu 1 of menu bar item \"Edit\"'"
-          } ],
-          "conditions" : [ {
-            "name" : "map",
-            "value" : 1,
-            "type" : "variable_if"
-          } ],
-          "type" : "basic"
         } ]
       }, {
         "description" : "Mouse keys",
@@ -1797,7 +1781,7 @@
             }
           },
           "to" : [ {
-            "shell_command" : "source ~/.config/karabiner-util.sh\nplay Tink"
+            "shell_command" : "afplay /System/Library/Sounds/Tink.aiff & exit"
           }, {
             "key_code" : "caps_lock",
             "hold_down_milliseconds" : 100

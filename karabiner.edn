@@ -8,7 +8,7 @@
 
  :tos {:hex {:input :hex} :to_caps_lock {:key :caps_lock :hold_down_ms 100}}
 
- :templates {:exec "source ~/.config/karabiner-util.sh\n%s"}
+ :templates {:alert_sound "afplay /System/Library/Sounds/Tink.aiff & exit"}
 
  :modi {:!FTTOOSSCCP [:function  :control        :option       :shift        :command        :caps_lock]
         :!FTOSCP     [:function  :left_control   :left_option  :left_shift   :left_command   :caps_lock]
@@ -19,14 +19,14 @@
  :main
  [{:des "Change caps_lock to 'map' layer, if alone caps_lock and sound"
    :rules [[:#SSPcaps_lock ["map" 1] nil {:afterup ["map" 0]
-                                          :alone [[:exec "play Tink"], :to_caps_lock]}]]}
+                                          :alone [[:alert_sound], :to_caps_lock]}]]}
 
   {:des "Unicode Hex Input"
    :rules [[:!OO#Pcaps_lock [:hex :left_option] :!hex {:afterup :f18 :alone {:input :hex :halt true}}]
            [:!OO#Pcaps_lock nil :hex {:afterup :f18}]]}
 
   {:des "Keymap for 'map' layer"
-   :rules [[:##fn [[:exec "play Tink"], :to_caps_lock]     ["map" 1]] ;; caps lock
+   :rules [[:##fn [[:alert_sound], :to_caps_lock]     ["map" 1]] ;; caps lock
            [:#Pleft_command   {:key :f13 :repeat false} ["map" 1]] ;; clipboard
            [:#Pright_command  {:key :f13 :repeat false} ["map" 1]]
 
@@ -69,15 +69,7 @@
            [:#Popen_bracket :!TCkeypad_slash      ["map" 1]]
            [:#Pclose_bracket :!TCkeypad_asterisk  ["map" 1]]
            [:!SS#Popen_bracket :!FTleft_arrow   ["map" 1]]
-           [:!SS#Pclose_bracket :!FTright_arrow ["map" 1]]
-
-           [:#Pequal_sign [:exec "ignoreEvents=$(defaults read org.p0deje.Maccy ignoreEvents)
-                                  defaults write org.p0deje.Maccy ignoreEvents true
-                                  menu 'menu item \"Copy\" of menu 1 of menu bar item \"Edit\"'
-                                  defaults write org.p0deje.Maccy ignoreEvents $ignoreEvents
-                                  read -d '' output <<< \"$(pbpaste | tr -d '[:space:]' | bc -l 2>&1)\"
-                                  printf %s \"$output\" | pbcopy
-                                  menu 'menu item \"Paste\" of menu 1 of menu bar item \"Edit\"'"] ["map" 1]]]}
+           [:!SS#Pclose_bracket :!FTright_arrow ["map" 1]]]}
 
   {:des "Mouse keys"
    :rules
@@ -113,4 +105,4 @@
     [:#Pleft_shift  :#Pleft_shift   ["map" 1]]
     [:#Pright_shift :#Pright_shift  ["map" 1]]
     [{:modi [:any] :any :key_code} :vk_none ["map" 1]]
-    [:##caps_lock [[:exec "play Tink"], :to_caps_lock]]]}]}
+    [:##caps_lock [[:alert_sound], :to_caps_lock]]]}]}
