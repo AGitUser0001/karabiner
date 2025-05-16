@@ -38,15 +38,12 @@
            [:#SSPbackslash :f17        ["map" 1]]
            [:#Pf5 :!Of15 ["map" 1]] [:#Pv :!Of15 ["map" 1]] [:#SSPf3 :f14 ["map" 1]]
 
-           [:#Pt [:exec "app Terminal"] ["map" 1]]                             ;; terminal
+           [:#Pt [:oid "com.apple.Terminal"] ["map" 1]]                             ;; terminal
            [:#Pf {:modi [:control :command] :key :f :repeat false} ["map" 1]]   ;; fullscreen
-           {:type :basic :from {:key_code :z :modifiers {:optional [:caps_lock]}} :to_after_key_up
-            [{:set_variable {:name "map" :value 0}}
-             {:software_function {:iokit_power_management_sleep_system {:delay_milliseconds 0}}}]
-            :conditions [{:type "variable_if" :name "map" :value 1}]} ;; sleep now
-           [:#Pescape [:exec "app 'Activity Monitor'"] ["map" 1]] [:#Pc :!Fc ["map" 1]] ;; activity monitor/control center
+           [:#Pz nil ["map" 1] {:afterup [["map" 0], {:softf {:sleep {:delay_milliseconds 0}}}]}] ;; sleep now
+           [:#Pescape [:oid "com.apple.ActivityMonitor"] ["map" 1]] [:#Pc :!Fc ["map" 1]] ;; activity monitor/control center
            [:#Pa :!Cspacebar ["map" 1]] [:#Px :!Cq ["map" 1]] [:!SS#Px :!OSCescape ["map" 1]] ;; spotlight/quit/force quit
-           [:#Ps nil ["map" 1] {:afterup [:exec "app ScreenSaverEngine"]}] ;; screensaver
+           [:#Ps nil ["map" 1] {:afterup [:oid "com.apple.ScreenSaver.Engine"]}] ;; screensaver
 
            [:#Pleft_control "~/Library/Custom/Executables/lockscreen"   ["map" 1]] ;; lock
            [:#Pright_control "~/Library/Custom/Executables/lockscreen"  ["map" 1]]
@@ -69,10 +66,10 @@
 
            [:#Pup_arrow   :mission_control    ["map" 1]] [:#Pleft_arrow   :!TC8 ["map" 1]]
            [:#Pdown_arrow :!Tmission_control  ["map" 1]] [:#Pright_arrow  :!TC9 ["map" 1]]
-           [:#Popen_bracket [:exec "menu 'menu item \"Left of Screen\" of menu 1 of menu item \"Full Screen Tile\" of menu 1 of menu bar item \"Window\"'"] ["map" 1]]
-           [:#Pclose_bracket [:exec "menu 'menu item \"Right of Screen\" of menu 1 of menu item \"Full Screen Tile\" of menu 1 of menu bar item \"Window\"'"] ["map" 1]]
-           [:!SS#Popen_bracket [:exec "menu 'process \"Rectangle\"' 'menu item \"Left Half\" of menu 1' 2"] ["map" 1]]
-           [:!SS#Pclose_bracket [:exec "menu 'process \"Rectangle\"' 'menu item \"Right Half\" of menu 1' 2"] ["map" 1]]
+           [:#Popen_bracket :!TCkeypad_slash      ["map" 1]]
+           [:#Pclose_bracket :!TCkeypad_asterisk  ["map" 1]]
+           [:!SS#Popen_bracket :!FTleft_arrow   ["map" 1]]
+           [:!SS#Pclose_bracket :!FTright_arrow ["map" 1]]
 
            [:#Pequal_sign [:exec "ignoreEvents=$(defaults read org.p0deje.Maccy ignoreEvents)
                                   defaults write org.p0deje.Maccy ignoreEvents true

@@ -338,7 +338,11 @@
             }
           },
           "to" : [ {
-            "shell_command" : "source ~/.config/karabiner-util.sh\napp Terminal"
+            "software_function" : {
+              "open_application" : {
+                "bundle_identifier" : "com.apple.Terminal"
+              }
+            }
           } ],
           "conditions" : [ {
             "name" : "map",
@@ -365,13 +369,6 @@
           } ],
           "type" : "basic"
         }, {
-          "type" : "basic",
-          "from" : {
-            "key_code" : "z",
-            "modifiers" : {
-              "optional" : [ "caps_lock" ]
-            }
-          },
           "to_after_key_up" : [ {
             "set_variable" : {
               "name" : "map",
@@ -384,11 +381,18 @@
               }
             }
           } ],
+          "from" : {
+            "key_code" : "z",
+            "modifiers" : {
+              "optional" : [ "caps_lock" ]
+            }
+          },
           "conditions" : [ {
-            "type" : "variable_if",
             "name" : "map",
-            "value" : 1
-          } ]
+            "value" : 1,
+            "type" : "variable_if"
+          } ],
+          "type" : "basic"
         }, {
           "from" : {
             "key_code" : "escape",
@@ -397,7 +401,11 @@
             }
           },
           "to" : [ {
-            "shell_command" : "source ~/.config/karabiner-util.sh\napp 'Activity Monitor'"
+            "software_function" : {
+              "open_application" : {
+                "bundle_identifier" : "com.apple.ActivityMonitor"
+              }
+            }
           } ],
           "conditions" : [ {
             "name" : "map",
@@ -476,7 +484,11 @@
           "type" : "basic"
         }, {
           "to_after_key_up" : [ {
-            "shell_command" : "source ~/.config/karabiner-util.sh\napp ScreenSaverEngine"
+            "software_function" : {
+              "open_application" : {
+                "bundle_identifier" : "com.apple.ScreenSaver.Engine"
+              }
+            }
           } ],
           "from" : {
             "key_code" : "s",
@@ -1107,7 +1119,8 @@
             }
           },
           "to" : [ {
-            "shell_command" : "source ~/.config/karabiner-util.sh\nmenu 'menu item \"Left of Screen\" of menu 1 of menu item \"Full Screen Tile\" of menu 1 of menu bar item \"Window\"'"
+            "key_code" : "keypad_slash",
+            "modifiers" : [ "left_command", "left_control" ]
           } ],
           "conditions" : [ {
             "name" : "map",
@@ -1123,7 +1136,8 @@
             }
           },
           "to" : [ {
-            "shell_command" : "source ~/.config/karabiner-util.sh\nmenu 'menu item \"Right of Screen\" of menu 1 of menu item \"Full Screen Tile\" of menu 1 of menu bar item \"Window\"'"
+            "key_code" : "keypad_asterisk",
+            "modifiers" : [ "left_command", "left_control" ]
           } ],
           "conditions" : [ {
             "name" : "map",
@@ -1140,7 +1154,8 @@
             }
           },
           "to" : [ {
-            "shell_command" : "source ~/.config/karabiner-util.sh\nmenu 'process \"Rectangle\"' 'menu item \"Left Half\" of menu 1' 2"
+            "key_code" : "left_arrow",
+            "modifiers" : [ "left_control", "fn" ]
           } ],
           "conditions" : [ {
             "name" : "map",
@@ -1157,7 +1172,8 @@
             }
           },
           "to" : [ {
-            "shell_command" : "source ~/.config/karabiner-util.sh\nmenu 'process \"Rectangle\"' 'menu item \"Right Half\" of menu 1' 2"
+            "key_code" : "right_arrow",
+            "modifiers" : [ "left_control", "fn" ]
           } ],
           "conditions" : [ {
             "name" : "map",
