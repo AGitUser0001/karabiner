@@ -1,10 +1,9 @@
 {
   "global" : {
     "ask_for_confirmation_before_quitting" : false,
-    "check_for_updates_on_startup" : true,
+    "show_additional_menu_items" : true,
     "show_in_menu_bar" : false,
-    "show_profile_name_in_menu_bar" : true,
-    "unsafe_ui" : false
+    "show_profile_name_in_menu_bar" : true
   },
   "profiles" : [ {
     "complex_modifications" : {
@@ -18,9 +17,10 @@
         "description" : "Change caps_lock to 'map' layer, if alone caps_lock and sound",
         "manipulators" : [ {
           "to_if_alone" : [ {
-            "key_code" : "caps_lock"
+            "shell_command" : "afplay /System/Library/Sounds/Tink.aiff & exit"
           }, {
-            "shell_command" : "source ~/.config/karabiner-util.sh\nplay Tink"
+            "key_code" : "caps_lock",
+            "hold_down_milliseconds" : 100
           } ],
           "to_after_key_up" : [ {
             "set_variable" : {
@@ -31,7 +31,7 @@
           "from" : {
             "key_code" : "caps_lock",
             "modifiers" : {
-              "optional" : [ "left_shift", "caps_lock" ]
+              "optional" : [ "shift", "caps_lock" ]
             }
           },
           "to" : [ {
@@ -57,7 +57,7 @@
           "from" : {
             "key_code" : "caps_lock",
             "modifiers" : {
-              "mandatory" : [ "left_option" ],
+              "mandatory" : [ "option" ],
               "optional" : [ "caps_lock" ]
             }
           },
@@ -82,7 +82,7 @@
           "from" : {
             "key_code" : "caps_lock",
             "modifiers" : {
-              "mandatory" : [ "left_option" ],
+              "mandatory" : [ "option" ],
               "optional" : [ "caps_lock" ]
             }
           },
@@ -95,17 +95,19 @@
           "type" : "basic"
         } ]
       }, {
-        "description" : "Keymap for ctrl+cmd",
+        "description" : "Keymap for 'map' layer",
         "manipulators" : [ {
           "from" : {
-            "key_code" : "left_command",
+            "key_code" : "fn",
             "modifiers" : {
-              "optional" : [ "caps_lock" ]
+              "optional" : [ "any" ]
             }
           },
           "to" : [ {
-            "key_code" : "v",
-            "modifiers" : [ "left_command", "left_control" ]
+            "shell_command" : "afplay /System/Library/Sounds/Tink.aiff & exit"
+          }, {
+            "key_code" : "caps_lock",
+            "hold_down_milliseconds" : 100
           } ],
           "conditions" : [ {
             "name" : "map",
@@ -115,13 +117,31 @@
           "type" : "basic"
         }, {
           "from" : {
-            "key_code" : "tab",
+            "key_code" : "left_command",
             "modifiers" : {
               "optional" : [ "caps_lock" ]
             }
           },
           "to" : [ {
-            "consumer_key_code" : "dictation"
+            "key_code" : "f13",
+            "repeat" : false
+          } ],
+          "conditions" : [ {
+            "name" : "map",
+            "value" : 1,
+            "type" : "variable_if"
+          } ],
+          "type" : "basic"
+        }, {
+          "from" : {
+            "key_code" : "right_command",
+            "modifiers" : {
+              "optional" : [ "caps_lock" ]
+            }
+          },
+          "to" : [ {
+            "key_code" : "f13",
+            "repeat" : false
           } ],
           "conditions" : [ {
             "name" : "map",
@@ -204,8 +224,8 @@
             }
           },
           "to" : [ {
-            "key_code" : "r",
-            "modifiers" : [ "left_command", "left_control" ]
+            "key_code" : "keypad_9",
+            "modifiers" : [ "left_command", "left_control", "left_shift" ]
           } ],
           "conditions" : [ {
             "name" : "map",
@@ -217,7 +237,7 @@
           "from" : {
             "key_code" : "delete_or_backspace",
             "modifiers" : {
-              "optional" : [ "left_shift", "caps_lock" ]
+              "optional" : [ "shift", "caps_lock" ]
             }
           },
           "to" : [ {
@@ -233,7 +253,7 @@
           "from" : {
             "key_code" : "return_or_enter",
             "modifiers" : {
-              "optional" : [ "left_shift", "caps_lock" ]
+              "optional" : [ "shift", "caps_lock" ]
             }
           },
           "to" : [ {
@@ -249,7 +269,7 @@
           "from" : {
             "key_code" : "backslash",
             "modifiers" : {
-              "optional" : [ "left_shift", "caps_lock" ]
+              "optional" : [ "shift", "caps_lock" ]
             }
           },
           "to" : [ {
@@ -263,14 +283,47 @@
           "type" : "basic"
         }, {
           "from" : {
-            "key_code" : "return",
+            "key_code" : "f5",
             "modifiers" : {
               "optional" : [ "caps_lock" ]
             }
           },
           "to" : [ {
-            "key_code" : "keypad_7",
-            "modifiers" : [ "left_command", "left_control", "left_shift" ]
+            "key_code" : "f15",
+            "modifiers" : [ "left_option" ]
+          } ],
+          "conditions" : [ {
+            "name" : "map",
+            "value" : 1,
+            "type" : "variable_if"
+          } ],
+          "type" : "basic"
+        }, {
+          "from" : {
+            "key_code" : "v",
+            "modifiers" : {
+              "optional" : [ "caps_lock" ]
+            }
+          },
+          "to" : [ {
+            "key_code" : "f15",
+            "modifiers" : [ "left_option" ]
+          } ],
+          "conditions" : [ {
+            "name" : "map",
+            "value" : 1,
+            "type" : "variable_if"
+          } ],
+          "type" : "basic"
+        }, {
+          "from" : {
+            "key_code" : "f3",
+            "modifiers" : {
+              "optional" : [ "shift", "caps_lock" ]
+            }
+          },
+          "to" : [ {
+            "key_code" : "f14"
           } ],
           "conditions" : [ {
             "name" : "map",
@@ -286,7 +339,11 @@
             }
           },
           "to" : [ {
-            "shell_command" : "source ~/.config/karabiner-util.sh\napp Terminal"
+            "software_function" : {
+              "open_application" : {
+                "bundle_identifier" : "com.apple.Terminal"
+              }
+            }
           } ],
           "conditions" : [ {
             "name" : "map",
@@ -314,7 +371,16 @@
           "type" : "basic"
         }, {
           "to_after_key_up" : [ {
-            "shell_command" : "pmset sleepnow"
+            "set_variable" : {
+              "name" : "map",
+              "value" : 0
+            }
+          }, {
+            "software_function" : {
+              "iokit_power_management_sleep_system" : {
+                "delay_milliseconds" : 0
+              }
+            }
           } ],
           "from" : {
             "key_code" : "z",
@@ -336,7 +402,11 @@
             }
           },
           "to" : [ {
-            "shell_command" : "source ~/.config/karabiner-util.sh\napp 'Activity Monitor'"
+            "software_function" : {
+              "open_application" : {
+                "bundle_identifier" : "com.apple.ActivityMonitor"
+              }
+            }
           } ],
           "conditions" : [ {
             "name" : "map",
@@ -399,7 +469,7 @@
           "from" : {
             "key_code" : "x",
             "modifiers" : {
-              "mandatory" : [ "left_shift" ],
+              "mandatory" : [ "shift" ],
               "optional" : [ "caps_lock" ]
             }
           },
@@ -415,7 +485,11 @@
           "type" : "basic"
         }, {
           "to_after_key_up" : [ {
-            "shell_command" : "source ~/.config/karabiner-util.sh\napp ScreenSaverEngine"
+            "software_function" : {
+              "open_application" : {
+                "bundle_identifier" : "com.apple.ScreenSaver.Engine"
+              }
+            }
           } ],
           "from" : {
             "key_code" : "s",
@@ -447,13 +521,13 @@
           "type" : "basic"
         }, {
           "from" : {
-            "key_code" : "spacebar",
+            "key_code" : "right_control",
             "modifiers" : {
               "optional" : [ "caps_lock" ]
             }
           },
           "to" : [ {
-            "shell_command" : "~/Library/Custom/Executables/emoji"
+            "shell_command" : "~/Library/Custom/Executables/lockscreen"
           } ],
           "conditions" : [ {
             "name" : "map",
@@ -469,7 +543,27 @@
             }
           },
           "to" : [ {
-            "shell_command" : "~/Library/Custom/Executables/emoji"
+            "key_code" : "fn"
+          }, {
+            "key_code" : "vk_none"
+          } ],
+          "conditions" : [ {
+            "name" : "map",
+            "value" : 1,
+            "type" : "variable_if"
+          } ],
+          "type" : "basic"
+        }, {
+          "from" : {
+            "key_code" : "spacebar",
+            "modifiers" : {
+              "optional" : [ "caps_lock" ]
+            }
+          },
+          "to" : [ {
+            "key_code" : "fn"
+          }, {
+            "key_code" : "vk_none"
           } ],
           "conditions" : [ {
             "name" : "map",
@@ -502,22 +596,6 @@
           },
           "to" : [ {
             "key_code" : "illumination_increment"
-          } ],
-          "conditions" : [ {
-            "name" : "map",
-            "value" : 1,
-            "type" : "variable_if"
-          } ],
-          "type" : "basic"
-        }, {
-          "from" : {
-            "key_code" : "f3",
-            "modifiers" : {
-              "optional" : [ "left_shift", "caps_lock" ]
-            }
-          },
-          "to" : [ {
-            "key_code" : "f14"
           } ],
           "conditions" : [ {
             "name" : "map",
@@ -1042,7 +1120,8 @@
             }
           },
           "to" : [ {
-            "shell_command" : "source ~/.config/karabiner-util.sh\nmenu 'menu item \"Tile Window to Left of Screen\" of menu 1 of menu bar item \"Window\"'"
+            "key_code" : "keypad_slash",
+            "modifiers" : [ "left_command", "left_control" ]
           } ],
           "conditions" : [ {
             "name" : "map",
@@ -1058,7 +1137,8 @@
             }
           },
           "to" : [ {
-            "shell_command" : "source ~/.config/karabiner-util.sh\nmenu 'menu item \"Tile Window to Right of Screen\" of menu 1 of menu bar item \"Window\"'"
+            "key_code" : "keypad_asterisk",
+            "modifiers" : [ "left_command", "left_control" ]
           } ],
           "conditions" : [ {
             "name" : "map",
@@ -1068,13 +1148,33 @@
           "type" : "basic"
         }, {
           "from" : {
-            "key_code" : "equal_sign",
+            "key_code" : "open_bracket",
             "modifiers" : {
+              "mandatory" : [ "shift" ],
               "optional" : [ "caps_lock" ]
             }
           },
           "to" : [ {
-            "shell_command" : "source ~/.config/karabiner-util.sh\nignoreEvents=$(defaults read org.p0deje.Maccy ignoreEvents)\n                                  defaults write org.p0deje.Maccy ignoreEvents true\n                                  menu 'menu item \"Copy\" of menu 1 of menu bar item \"Edit\"'\n                                  defaults write org.p0deje.Maccy ignoreEvents $ignoreEvents\n                                  read -d '' output <<< \"$(pbpaste | tr -d '[:space:]' | bc -l 2>&1)\"\n                                  printf %s \"$output\" | pbcopy\n                                  menu 'menu item \"Paste\" of menu 1 of menu bar item \"Edit\"'"
+            "key_code" : "left_arrow",
+            "modifiers" : [ "left_control", "fn" ]
+          } ],
+          "conditions" : [ {
+            "name" : "map",
+            "value" : 1,
+            "type" : "variable_if"
+          } ],
+          "type" : "basic"
+        }, {
+          "from" : {
+            "key_code" : "close_bracket",
+            "modifiers" : {
+              "mandatory" : [ "shift" ],
+              "optional" : [ "caps_lock" ]
+            }
+          },
+          "to" : [ {
+            "key_code" : "right_arrow",
+            "modifiers" : [ "left_control", "fn" ]
           } ],
           "conditions" : [ {
             "name" : "map",
@@ -1087,9 +1187,49 @@
         "description" : "Mouse keys",
         "manipulators" : [ {
           "from" : {
+            "key_code" : "equal_sign",
+            "modifiers" : {
+              "mandatory" : [ "shift" ],
+              "optional" : [ "caps_lock" ]
+            }
+          },
+          "to" : [ {
+            "modifiers" : [ "control", "command" ],
+            "mouse_key" : {
+              "vertical_wheel" : 64
+            }
+          } ],
+          "conditions" : [ {
+            "name" : "map",
+            "value" : 1,
+            "type" : "variable_if"
+          } ],
+          "type" : "basic"
+        }, {
+          "from" : {
+            "key_code" : "hyphen",
+            "modifiers" : {
+              "mandatory" : [ "shift" ],
+              "optional" : [ "caps_lock" ]
+            }
+          },
+          "to" : [ {
+            "modifiers" : [ "control", "command" ],
+            "mouse_key" : {
+              "vertical_wheel" : -64
+            }
+          } ],
+          "conditions" : [ {
+            "name" : "map",
+            "value" : 1,
+            "type" : "variable_if"
+          } ],
+          "type" : "basic"
+        }, {
+          "from" : {
             "key_code" : "7",
             "modifiers" : {
-              "mandatory" : [ "left_shift" ],
+              "mandatory" : [ "shift" ],
               "optional" : [ "caps_lock" ]
             }
           },
@@ -1109,7 +1249,7 @@
           "from" : {
             "key_code" : "8",
             "modifiers" : {
-              "mandatory" : [ "left_shift" ],
+              "mandatory" : [ "shift" ],
               "optional" : [ "caps_lock" ]
             }
           },
@@ -1128,7 +1268,7 @@
           "from" : {
             "key_code" : "9",
             "modifiers" : {
-              "mandatory" : [ "left_shift" ],
+              "mandatory" : [ "shift" ],
               "optional" : [ "caps_lock" ]
             }
           },
@@ -1148,7 +1288,7 @@
           "from" : {
             "key_code" : "u",
             "modifiers" : {
-              "mandatory" : [ "left_shift" ],
+              "mandatory" : [ "shift" ],
               "optional" : [ "caps_lock" ]
             }
           },
@@ -1167,7 +1307,7 @@
           "from" : {
             "key_code" : "i",
             "modifiers" : {
-              "mandatory" : [ "left_shift" ],
+              "mandatory" : [ "shift" ],
               "optional" : [ "caps_lock" ]
             }
           },
@@ -1184,7 +1324,7 @@
           "from" : {
             "key_code" : "o",
             "modifiers" : {
-              "mandatory" : [ "left_shift" ],
+              "mandatory" : [ "shift" ],
               "optional" : [ "caps_lock" ]
             }
           },
@@ -1203,7 +1343,7 @@
           "from" : {
             "key_code" : "j",
             "modifiers" : {
-              "mandatory" : [ "left_shift" ],
+              "mandatory" : [ "shift" ],
               "optional" : [ "caps_lock" ]
             }
           },
@@ -1223,7 +1363,7 @@
           "from" : {
             "key_code" : "k",
             "modifiers" : {
-              "mandatory" : [ "left_shift" ],
+              "mandatory" : [ "shift" ],
               "optional" : [ "caps_lock" ]
             }
           },
@@ -1242,7 +1382,7 @@
           "from" : {
             "key_code" : "l",
             "modifiers" : {
-              "mandatory" : [ "left_shift" ],
+              "mandatory" : [ "shift" ],
               "optional" : [ "caps_lock" ]
             }
           },
@@ -1262,7 +1402,7 @@
           "from" : {
             "key_code" : "comma",
             "modifiers" : {
-              "mandatory" : [ "left_shift" ],
+              "mandatory" : [ "shift" ],
               "optional" : [ "caps_lock" ]
             }
           },
@@ -1279,7 +1419,7 @@
           "from" : {
             "key_code" : "period",
             "modifiers" : {
-              "mandatory" : [ "left_shift" ],
+              "mandatory" : [ "shift" ],
               "optional" : [ "caps_lock" ]
             }
           },
@@ -1296,8 +1436,8 @@
           "from" : {
             "key_code" : "left_arrow",
             "modifiers" : {
-              "mandatory" : [ "left_shift" ],
-              "optional" : [ "right_command", "right_option", "caps_lock" ]
+              "mandatory" : [ "shift" ],
+              "optional" : [ "caps_lock" ]
             }
           },
           "to" : [ {
@@ -1315,8 +1455,8 @@
           "from" : {
             "key_code" : "right_arrow",
             "modifiers" : {
-              "mandatory" : [ "left_shift" ],
-              "optional" : [ "right_command", "right_option", "caps_lock" ]
+              "mandatory" : [ "shift" ],
+              "optional" : [ "caps_lock" ]
             }
           },
           "to" : [ {
@@ -1334,8 +1474,8 @@
           "from" : {
             "key_code" : "up_arrow",
             "modifiers" : {
-              "mandatory" : [ "left_shift" ],
-              "optional" : [ "right_command", "right_option", "caps_lock" ]
+              "mandatory" : [ "shift" ],
+              "optional" : [ "caps_lock" ]
             }
           },
           "to" : [ {
@@ -1353,8 +1493,8 @@
           "from" : {
             "key_code" : "down_arrow",
             "modifiers" : {
-              "mandatory" : [ "left_shift" ],
-              "optional" : [ "right_command", "right_option", "caps_lock" ]
+              "mandatory" : [ "shift" ],
+              "optional" : [ "caps_lock" ]
             }
           },
           "to" : [ {
@@ -1372,7 +1512,7 @@
           "from" : {
             "key_code" : "h",
             "modifiers" : {
-              "mandatory" : [ "left_shift" ],
+              "mandatory" : [ "shift" ],
               "optional" : [ "caps_lock" ]
             }
           },
@@ -1391,7 +1531,7 @@
           "from" : {
             "key_code" : "y",
             "modifiers" : {
-              "mandatory" : [ "left_shift" ],
+              "mandatory" : [ "shift" ],
               "optional" : [ "caps_lock" ]
             }
           },
@@ -1410,7 +1550,7 @@
           "from" : {
             "key_code" : "0",
             "modifiers" : {
-              "mandatory" : [ "left_shift" ],
+              "mandatory" : [ "shift" ],
               "optional" : [ "caps_lock" ]
             }
           },
@@ -1429,7 +1569,7 @@
           "from" : {
             "key_code" : "n",
             "modifiers" : {
-              "mandatory" : [ "left_shift" ],
+              "mandatory" : [ "shift" ],
               "optional" : [ "caps_lock" ]
             }
           },
@@ -1448,7 +1588,45 @@
           "from" : {
             "key_code" : "m",
             "modifiers" : {
-              "mandatory" : [ "left_shift" ],
+              "mandatory" : [ "shift" ],
+              "optional" : [ "caps_lock" ]
+            }
+          },
+          "to" : [ {
+            "mouse_key" : {
+              "speed_multiplier" : 2
+            }
+          } ],
+          "conditions" : [ {
+            "name" : "map",
+            "value" : 1,
+            "type" : "variable_if"
+          } ],
+          "type" : "basic"
+        }, {
+          "from" : {
+            "key_code" : "left_command",
+            "modifiers" : {
+              "mandatory" : [ "shift" ],
+              "optional" : [ "caps_lock" ]
+            }
+          },
+          "to" : [ {
+            "mouse_key" : {
+              "speed_multiplier" : 4
+            }
+          } ],
+          "conditions" : [ {
+            "name" : "map",
+            "value" : 1,
+            "type" : "variable_if"
+          } ],
+          "type" : "basic"
+        }, {
+          "from" : {
+            "key_code" : "left_option",
+            "modifiers" : {
+              "mandatory" : [ "shift" ],
               "optional" : [ "caps_lock" ]
             }
           },
@@ -1467,7 +1645,7 @@
           "from" : {
             "key_code" : "right_command",
             "modifiers" : {
-              "mandatory" : [ "left_shift" ],
+              "mandatory" : [ "shift" ],
               "optional" : [ "caps_lock" ]
             }
           },
@@ -1486,7 +1664,7 @@
           "from" : {
             "key_code" : "right_option",
             "modifiers" : {
-              "mandatory" : [ "left_shift" ],
+              "mandatory" : [ "shift" ],
               "optional" : [ "caps_lock" ]
             }
           },
@@ -1505,7 +1683,7 @@
           "from" : {
             "key_code" : "slash",
             "modifiers" : {
-              "mandatory" : [ "left_shift" ],
+              "mandatory" : [ "shift" ],
               "optional" : [ "caps_lock" ]
             }
           },
@@ -1527,19 +1705,20 @@
           "from" : {
             "key_code" : "caps_lock",
             "modifiers" : {
-              "mandatory" : [ "left_command" ]
+              "mandatory" : [ "command" ],
+              "optional" : [ "caps_lock" ]
             }
           },
           "to" : [ {
-            "key_code" : "v",
-            "modifiers" : [ "left_command", "left_control" ]
+            "key_code" : "f13",
+            "repeat" : false
           } ],
           "type" : "basic"
         }, {
           "from" : {
             "key_code" : "caps_lock",
             "modifiers" : {
-              "mandatory" : [ "left_control" ],
+              "mandatory" : [ "control" ],
               "optional" : [ "caps_lock" ]
             }
           },
@@ -1549,19 +1728,10 @@
           "type" : "basic"
         }, {
           "from" : {
-            "key_code" : "delete_or_backspace",
+            "key_code" : "left_shift",
             "modifiers" : {
-              "mandatory" : [ "fn" ],
-              "optional" : [ "any" ]
+              "optional" : [ "caps_lock" ]
             }
-          },
-          "to" : [ {
-            "key_code" : "delete_forward"
-          } ],
-          "type" : "basic"
-        }, {
-          "from" : {
-            "key_code" : "left_shift"
           },
           "to" : [ {
             "key_code" : "left_shift"
@@ -1574,7 +1744,10 @@
           "type" : "basic"
         }, {
           "from" : {
-            "key_code" : "right_shift"
+            "key_code" : "right_shift",
+            "modifiers" : {
+              "optional" : [ "caps_lock" ]
+            }
           },
           "to" : [ {
             "key_code" : "right_shift"
@@ -1609,152 +1782,27 @@
             }
           },
           "to" : [ {
-            "key_code" : "caps_lock"
+            "shell_command" : "afplay /System/Library/Sounds/Tink.aiff & exit"
           }, {
-            "shell_command" : "source ~/.config/karabiner-util.sh\nplay Tink"
+            "key_code" : "caps_lock",
+            "hold_down_milliseconds" : 100
           } ],
           "type" : "basic"
         } ]
       } ]
     },
-    "devices" : [ {
-      "mouse_swap_xy" : false,
-      "identifiers" : {
-        "is_game_pad" : false,
-        "is_keyboard" : true,
-        "is_pointing_device" : false,
-        "product_id" : 0,
-        "vendor_id" : 0
-      },
-      "fn_function_keys" : [ ],
-      "ignore" : false,
-      "disable_built_in_keyboard_if_exists" : false,
-      "mouse_flip_vertical_wheel" : false,
-      "game_pad_swap_sticks" : false,
-      "mouse_flip_horizontal_wheel" : false,
-      "manipulate_caps_lock_led" : true,
-      "mouse_flip_y" : false,
-      "mouse_swap_wheels" : false,
-      "simple_modifications" : [ ],
-      "treat_as_built_in_keyboard" : false,
-      "mouse_flip_x" : false
-    }, {
-      "mouse_swap_xy" : false,
-      "identifiers" : {
-        "is_game_pad" : false,
-        "is_keyboard" : false,
-        "is_pointing_device" : true,
-        "product_id" : 0,
-        "vendor_id" : 0
-      },
-      "fn_function_keys" : [ ],
-      "ignore" : true,
-      "disable_built_in_keyboard_if_exists" : false,
-      "mouse_flip_vertical_wheel" : false,
-      "game_pad_swap_sticks" : false,
-      "mouse_flip_horizontal_wheel" : false,
-      "manipulate_caps_lock_led" : false,
-      "mouse_flip_y" : false,
-      "mouse_swap_wheels" : false,
-      "simple_modifications" : [ ],
-      "treat_as_built_in_keyboard" : false,
-      "mouse_flip_x" : false
-    } ],
     "fn_function_keys" : [ {
-      "from" : {
-        "key_code" : "f1"
-      },
-      "to" : [ {
-        "consumer_key_code" : "display_brightness_decrement"
-      } ]
-    }, {
-      "from" : {
-        "key_code" : "f2"
-      },
-      "to" : [ {
-        "consumer_key_code" : "display_brightness_increment"
-      } ]
-    }, {
-      "from" : {
-        "key_code" : "f3"
-      },
-      "to" : [ {
-        "apple_vendor_keyboard_key_code" : "mission_control"
-      } ]
-    }, {
-      "from" : {
-        "key_code" : "f4"
-      },
-      "to" : [ {
-        "apple_vendor_keyboard_key_code" : "spotlight"
-      } ]
-    }, {
-      "from" : {
-        "key_code" : "f5"
-      },
-      "to" : [ {
-        "consumer_key_code" : "dictation"
-      } ]
-    }, {
       "from" : {
         "key_code" : "f6"
       },
       "to" : [ {
         "key_code" : "f19"
       } ]
-    }, {
-      "from" : {
-        "key_code" : "f7"
-      },
-      "to" : [ {
-        "consumer_key_code" : "rewind"
-      } ]
-    }, {
-      "from" : {
-        "key_code" : "f8"
-      },
-      "to" : [ {
-        "consumer_key_code" : "play_or_pause"
-      } ]
-    }, {
-      "from" : {
-        "key_code" : "f9"
-      },
-      "to" : [ {
-        "consumer_key_code" : "fast_forward"
-      } ]
-    }, {
-      "from" : {
-        "key_code" : "f10"
-      },
-      "to" : [ {
-        "consumer_key_code" : "mute"
-      } ]
-    }, {
-      "from" : {
-        "key_code" : "f11"
-      },
-      "to" : [ {
-        "consumer_key_code" : "volume_decrement"
-      } ]
-    }, {
-      "from" : {
-        "key_code" : "f12"
-      },
-      "to" : [ {
-        "consumer_key_code" : "volume_increment"
-      } ]
     } ],
-    "name" : "⌘",
-    "parameters" : {
-      "delay_milliseconds_before_open_device" : 1000
-    },
+    "name" : "｜",
     "selected" : true,
-    "simple_modifications" : [ ],
     "virtual_hid_keyboard" : {
-      "country_code" : 0,
-      "indicate_sticky_modifier_keys_state" : true,
-      "mouse_key_xy_scale" : 100
+      "keyboard_type_v2" : "ansi"
     }
   } ]
 }
