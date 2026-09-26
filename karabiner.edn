@@ -1,3 +1,9 @@
+;; Layer = hold Caps Lock; Shift adds mouse keys and selected-area Siri.
+;; Goku shorthand: ! mandatory, # optional; C/T/O/S = left Cmd/Ctrl/Opt/Shift,
+;; Q/W/E/R = right equivalents, F = Fn, P = active Caps Lock state.
+;; CC/TT/OO/SS accept either side; ## accepts any optional modifier.
+;; #P permits Caps Lock being ON; it does not mean "hold Caps Lock".
+;; Optional modifiers survive in output: #SSP rules also emit Shift when held.
 {:profiles {:｜ {:default true
                 :sim 50
                 :delay 500
@@ -6,10 +12,16 @@
 
  :input-sources {:hex {:input_source_id "(.|^)UnicodeHexInput$"}}
 
- :tos {:hex {:input :hex} :to_caps_lock {:key :caps_lock :hold_down_ms 100}}
+ :tos {:hex {:input :hex}
+       :to_caps_lock {:key :caps_lock :hold_down_ms 100}
+       :show_apps {:key :!TSCkeypad_5 :repeat false}
+       :siri_window {:key :!SCspacebar :repeat false}
+       :siri_area {:key :!SC6 :repeat false}}
 
  :templates {:alert_sound "afplay /System/Library/Sounds/Tink.aiff & exit"}
 
+ ;; Modifier shorthand reference legend (documentation, not configuration).
+ ;; Goku ignores this top-level :modi block; inline :modi below configures events.
  :modi {:!FTTOOSSCCP [:function  :control        :option       :shift        :command        :caps_lock]
         :!FTOSCP     [:function  :left_control   :left_option  :left_shift   :left_command   :caps_lock]
         :!FWERQP     [:function  :right_control  :right_option :right_shift  :right_command  :caps_lock]
@@ -21,6 +33,10 @@
    :rules [[:#SSPcaps_lock ["map" 1] nil {:afterup ["map" 0]
                                           :alone [[:alert_sound], :to_caps_lock]}]]}
 
+  ;; Option+Caps selects Unicode Hex Input and holds Option for hex entry.
+  ;; F18 = macOS "Select the previous input source" (confirmed in Settings).
+  ;; :halt on the alone action suppresses the afterup F18; tap stays in Hex Input.
+  ;; Already in Hex Input: Option+Caps only emits F18 on release (no Option output).
   {:des "Unicode Hex Input"
    :rules [[:!OO#Pcaps_lock [:hex :left_option] :!hex {:afterup :f18 :alone {:input :hex :halt true}}]
            [:!OO#Pcaps_lock nil :hex {:afterup :f18}]]}
@@ -30,33 +46,55 @@
            [:#Pleft_command   {:key :f13 :repeat false} ["map" 1]] ;; clipboard
            [:#Pright_command  {:key :f13 :repeat false} ["map" 1]]
 
-           [:#Pw :!TSCkeypad_6        ["map" 1]] [:#Pq :!TSCkeypad_7        ["map" 1]] [:#Pd :f19 ["map" 1]]
-           [:#Pn :!TSCkeypad_8        ["map" 1]] [:#Pr :!TSCkeypad_9        ["map" 1]]
+           ;; w = focus active/next window (macOS).
+           ;; n = Quick Note. q sends Ctrl+Shift+Cmd+keypad7: recipient unverified.
+           ;; d/r are intentionally unassigned (DND/toolbar focus removed).
+           [:#Pw :!TSCkeypad_6        ["map" 1]] [:#Pq :!TSCkeypad_7        ["map" 1]]
+           [:#Pn :!TSCkeypad_8        ["map" 1]]
 
-           [:#SSPdelete_or_backspace :f15 ["map" 1]] ;; screenshots and recording options
+           ;; Plain F14/F15/F16/F17 recipients unverified; only Option+F15 is
+           ;; confirmed as macOS screenshot/recording options. Shift is preserved.
+           [:#SSPdelete_or_backspace :f15 ["map" 1]] ;; legacy screenshot comment; see above
            [:#SSPreturn_or_enter :f16  ["map" 1]]
            [:#SSPbackslash :f17        ["map" 1]]
            [:#Pf5 :!Of15 ["map" 1]] [:#Pv :!Of15 ["map" 1]] [:#SSPf3 :f14 ["map" 1]]
 
+           ;; :oid opens/activates an app by bundle ID (native open_application).
            [:#Pt [:oid "com.apple.Terminal"] ["map" 1]]                             ;; terminal
            [:#Pf {:modi [:control :command] :key :f :repeat false} ["map" 1]]   ;; fullscreen
            [:#Pz nil ["map" 1] {:afterup [["map" 0], {:softf {:sleep {:delay_milliseconds 0}}}]}] ;; sleep now
            [:#Pescape [:oid "com.apple.ActivityMonitor"] ["map" 1]] [:#Pc :!Fc ["map" 1]] ;; activity monitor/control center
-           [:#Pa :!Cspacebar ["map" 1]] [:#Px :!Cq ["map" 1]] [:!SS#Px :!OSCescape ["map" 1]] ;; spotlight/quit/force quit
+           [:#Pa :show_apps ["map" 1]] ;; Show Apps; general Spotlight is available via Fn+S
+           [:#Px :!Cq ["map" 1]] [:!SS#Px :!OSCescape ["map" 1]] ;; quit/force quit
            [:#Ps nil ["map" 1] {:afterup [:oid "com.apple.ScreenSaver.Engine"]}] ;; screensaver
 
+           ;; Local arm64 binary imports private SACLockScreenImmediate.
+           ;; Intentional custom lock-screen implementation; retained as preferred.
            [:#Pleft_control "~/Library/Custom/Executables/lockscreen"   ["map" 1]] ;; lock
            [:#Pright_control "~/Library/Custom/Executables/lockscreen"  ["map" 1]]
 
+           ;; Fn down+up tap; vk_none ends the preceding key immediately.
+           ;; Emoji behavior depends on macOS "Press Globe key to" preference.
            [:#Pe        [:fn :vk_none] ["map" 1]] ;; emoji
-           [:#Pspacebar [:fn :vk_none] ["map" 1]]
+           [:#Pspacebar :siri_window ["map" 1]] ;; ask Siri about active window
+           [:!SS#Pspacebar :siri_area ["map" 1]] ;; ask Siri about selected area; either Shift
 
            [:#Pf1 :illumination_decrement ["map" 1]]  [:#Pf2 :illumination_increment ["map" 1]] ;; keyboard illumination
 
+           ;; macOS focus/system shortcuts: ` -> focus Dock, 1 -> Show Desktop,
+           ;; 2 -> focus menu bar, 3 -> focus status menus; 4 recipient unverified.
+           ;; 5 is unassigned: Show Apps moved to a. Keypad and number-row keys differ.
            [:#Pgrave_accent_and_tilde :!TSCkeypad_0 ["map" 1]]
            [:#P1 :!TSCkeypad_1 ["map" 1]] [:#P2 :!TSCkeypad_2 ["map" 1]] [:#P3 :!TSCkeypad_3 ["map" 1]]
-           [:#P4 :!TSCkeypad_4 ["map" 1]] [:#P5 :!TSCkeypad_5 ["map" 1]]
+           [:#P4 :!TSCkeypad_4 ["map" 1]]
 
+           ;; Rectangle shortcuts confirmed from com.knollsoft.Rectangle prefs:
+           ;; F11/F12 = smaller/larger. Spatial grid below uses keypad positions:
+           ;; 7/8/9 = top-left/top-half/top-right; u/i/o = left/center/right;
+           ;; j/k/l = bottom-left/bottom-half/bottom-right; m = maximize.
+           ;; y = almost maximize; h = maximize height; ; = first three-fourths;
+           ;; quote = first two-thirds; slash = first third; period = first fourth;
+           ;; 6 = center half; comma = top-left sixth.
            [:#Pf11 :!TCkeypad_hyphen ["map" 1]] [:#Pf12 :!TCkeypad_plus ["map" 1]]
            [:#P6 :!TC6          ["map" 1]] [:#P7 :!TCkeypad_1 ["map" 1]] [:#P8 :!TCkeypad_2 ["map" 1]] [:#P9 :!TCkeypad_3 ["map" 1]]
            [:#Py :!TC0          ["map" 1]] [:#Pu :!TCkeypad_4 ["map" 1]] [:#Pi :!TCkeypad_5 ["map" 1]] [:#Po :!TCkeypad_6 ["map" 1]]
@@ -66,11 +104,17 @@
 
            [:#Pup_arrow   :mission_control    ["map" 1]] [:#Pleft_arrow   :!TC8 ["map" 1]]
            [:#Pdown_arrow :!Tmission_control  ["map" 1]] [:#Pright_arrow  :!TC9 ["map" 1]]
+           ;; Unshifted brackets: macOS window-management Fill/Center bindings
+           ;; suggested by stored shortcut IDs 257/258; labels not yet confirmed.
+           ;; Shift+brackets send Fn+Ctrl+Left/Right (macOS window tiling chords).
            [:#Popen_bracket :!TCkeypad_slash      ["map" 1]]
            [:#Pclose_bracket :!TCkeypad_asterisk  ["map" 1]]
            [:!SS#Popen_bracket :!FTleft_arrow   ["map" 1]]
            [:!SS#Pclose_bracket :!FTright_arrow ["map" 1]]]}
 
+  ;; Shift+layer = cursor grid, buttons, scroll, held speed multipliers.
+  ;; Diagonals 1000/1000 have about the same magnitude as cardinal 1414.
+  ;; :mkey movement is continuous while held, not an absolute cursor coordinate.
   {:des "Mouse keys"
    :rules
    [;; 6 7 8 9 0 - + ⌫
@@ -104,5 +148,6 @@
 
     [:#Pleft_shift  :#Pleft_shift   ["map" 1]]
     [:#Pright_shift :#Pright_shift  ["map" 1]]
+    ;; Layer fallback swallows unmatched keys; keep after specific layer bindings.
     [{:modi [:any] :any :key_code} :vk_none ["map" 1]]
     [:##caps_lock [[:alert_sound], :to_caps_lock]]]}]}
