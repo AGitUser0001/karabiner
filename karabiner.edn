@@ -76,8 +76,8 @@
            ;; Fn down+up tap; vk_none ends the preceding key immediately.
            ;; Emoji behavior depends on macOS "Press Globe key to" preference.
            [:#Pe        [:fn :vk_none] ["map" 1]] ;; emoji
-           [:#Pspacebar :siri_window ["map" 1]] ;; ask Siri about active window
-           [:!SS#Pspacebar :siri_area ["map" 1]] ;; ask Siri about selected area; either Shift
+           [:#Pspacebar :siri_area ["map" 1]] ;; ask Siri about selected area
+           [:!SS#Pspacebar :siri_window ["map" 1]] ;; ask Siri about active window; either Shift
 
            [:#Pf1 :illumination_decrement ["map" 1]]  [:#Pf2 :illumination_increment ["map" 1]] ;; keyboard illumination
 
